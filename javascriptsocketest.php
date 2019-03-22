@@ -16,13 +16,15 @@
                 if("WebSocket" in window){
                     document.getElementById("display").innerHTML = "connectable";
                     
-                    var ws = new WebSocket('ws://localhost:80//testrepro2222222/InterfaceBattlebot/GoLeft');
+                    var ws = new WebSocket('ws://localhost:443//testrepro2222222/InterfaceBattlebot/GoLeft');
+                    
                     //localhost = ip/server
                     //80 = port (kan verschillen)
                     //testrepro2222222/InterfaceBattlebot/ is mijn map naam 
+                    
                     ws.onopen = function () {
                         ws.getElementById("display").innerHTML = "connected";
-                        ws.send(""); // Send the message 'Ping' to the server
+                        ws.send("90249873298732498723947398ihsfus8yhfjiasfoias"); // Send the message 'Ping' to the server
                     };  
                 }
                 else{
