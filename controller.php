@@ -20,17 +20,21 @@
         </style>
     </head>
     <body>
-        <?php
-        // put your code here
+        <?php 
+            //deze variabele gaat in javascript en dan naar de server.
+            //hij mag aangepast worden zodat hij met de database wordt verbonden.
+            $group = "INF1J";
         ?>
         <p> Maak gebruik van de A-S-W-D toetsen om naar link, achteren, rechts en voren te bewegen. </p>
         <input type="text" id="besturingsvak" onkeydown="GetKeyInput()" onkeyup="Stop()"> <!--   -->
         <div id="display" onclick="loadDoc()"> beweging </div>
         <div id="ForwardBackwards"> richting: </div>
         <div id="TurnAround"> Draaien: </div>
+        <div id="Infotest"> </div>
         <script>
-            group = "INF1J";
-            lastmove = ""; //zodat er niet gespamt wordt.
+            
+            group = <?php echo json_encode($group); ?>;
+            lastmove = ""; //zodat er geen request gespamt worden wanneer je w/a/s/d inhoud
             var req = new XMLHttpRequest();
             
             function GetKeyInput(){
