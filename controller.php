@@ -36,7 +36,7 @@
                 var input = document.getElementById("besturingsvak").value;
                 document.getElementById("besturingsvak").value = "";
                 if(x > 0){
-                    document.getElementById("display").innerHTML = "rijden"; 
+                    document.getElementById("display").innerHTML = "rijden";
                 }
                 if(x == 87){
                     document.getElementById("ForwardBackwards").innerHTML = "richting: voor<br>"; 
@@ -51,7 +51,7 @@
                     document.getElementById("TurnAround").innerHTML = "Draaien: rechts<br>";    
                 }
                 else{
-                    document.getElementById("display").innerHTML = "niet geldig";      
+                    document.getElementById("display").innerHTML = "niet geldig";
                 }
             }               
             
