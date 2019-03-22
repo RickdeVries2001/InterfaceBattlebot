@@ -16,13 +16,13 @@
                 if("WebSocket" in window){
                     document.getElementById("display").innerHTML = "connectable";
                     
-                    socket = "80"; //dit is mijn port (deze kan variëren (kijk in xampp voor jouw port)
-                    ipadress = "127.0.0.1";
-                    
-                    var ws = new WebSocket('ws://' + ipadress + ':' + socket);
+                    var ws = new WebSocket('ws://localhost:80//testrepro2222222/InterfaceBattlebot/GoLeft');
+                    //localhost = ip/server
+                    //80 = port (kan verschillen)
+                    //testrepro2222222/InterfaceBattlebot/ is mijn map naam 
                     ws.onopen = function () {
                         ws.getElementById("display").innerHTML = "connected";
-                        ws.send('Hello World'); // Send the message 'Ping' to the server
+                        ws.send(""); // Send the message 'Ping' to the server
                     };  
                 }
                 else{
