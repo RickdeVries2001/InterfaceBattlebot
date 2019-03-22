@@ -47,7 +47,7 @@
                 }
                 if(x == 87){
                     document.getElementById("ForwardBackwards").innerHTML = "richting: voor<br>"; 
-                    req.open("POST", "file", false);
+                    req.open("POST", "UIRequest", false);
                     if(lastmove != "F"){
                         req.send(group + ".Forward");
                     }
@@ -55,7 +55,7 @@
                 }
                 else if(x == 83){
                     document.getElementById("ForwardBackwards").innerHTML = "richting: achter<br>";
-                    req.open("POST", "file", false);
+                    req.open("POST", "UIRequest", false);
                     if(lastmove != "B"){
                         req.send(group + ".Backward");
                     }
@@ -63,7 +63,7 @@
                 }
                 else if(x == 65){
                     document.getElementById("TurnAround").innerHTML = "Draaien: links<br>"; 
-                    req.open("POST", "file", false);
+                    req.open("POST", "UIRequest", false);
                     if(lastmove != "L"){
                         req.send(group + ".Left");
                     }
@@ -71,7 +71,7 @@
                 }
                 else if(x == 68){ 
                     document.getElementById("TurnAround").innerHTML = "Draaien: rechts<br>";   
-                    req.open("POST", "file", false);
+                    req.open("POST", "UIRequest", false);
                     if(lastmove != "R"){
                         req.send(group + ".Right");
                     }
@@ -86,7 +86,7 @@
                 document.getElementById("display").innerHTML = "stilstaan";  
                 document.getElementById("ForwardBackwards").innerHTML = "richting:";                     
                 document.getElementById("TurnAround").innerHTML = "Draaien:";
-                req.open("POST", "file", false);
+                req.open("POST", "UIRequest", false);
                 if(lastmove != "S"){
                     req.send(group + ".Stop");
                 }
