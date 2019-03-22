@@ -47,7 +47,7 @@
                 }
                 if(x == 87){
                     document.getElementById("ForwardBackwards").innerHTML = "richting: voor<br>"; 
-                    req.open("POST", "UIRequest", false);
+                    req.open("POST", "UIRequest.txt", false);
                     if(lastmove != "F"){
                         req.send(group + ".Forward");
                     }
@@ -55,7 +55,7 @@
                 }
                 else if(x == 83){
                     document.getElementById("ForwardBackwards").innerHTML = "richting: achter<br>";
-                    req.open("POST", "UIRequest", false);
+                    req.open("POST", "UIRequest.txt", false);
                     if(lastmove != "B"){
                         req.send(group + ".Backward");
                     }
@@ -63,19 +63,37 @@
                 }
                 else if(x == 65){
                     document.getElementById("TurnAround").innerHTML = "Draaien: links<br>"; 
-                    req.open("POST", "UIRequest", false);
-                    if(lastmove != "L"){
-                        req.send(group + ".Left");
+                    req.open("POST", "UIRequest.txt", false);
+                    
+                    if(lastmove == "F" && lastmove != "FL"){
+                        req.send(group + ".Forward_TurnLeft");
+                        lastmove = "FL";
                     }
-                    lastmove = "L";
+                    else if(lastmove == "B" && lastmove != "BL"){
+                        req.send(group + ".Backward_TurnLeft");
+                        lastmove = "BL";
+                    }
+                    else if(lastmove != "L" && lastmove != "BL" && lastmove != "FL"){
+                        req.send(group + ".Left");
+                        lastmove = "L";
+                    }
                 }
                 else if(x == 68){ 
                     document.getElementById("TurnAround").innerHTML = "Draaien: rechts<br>";   
-                    req.open("POST", "UIRequest", false);
-                    if(lastmove != "R"){
-                        req.send(group + ".Right");
+                    req.open("POST", "UIRequest.txt", false);
+                    
+                    if(lastmove == "F" && lastmove != "FR"){
+                        req.send(group + ".Forward_TurnRight");
+                        lastmove = "FR";
                     }
-                    lastmove = "R";
+                    else if(lastmove == "B" && lastmove != "BR"){
+                        req.send(group + ".Backward_TurnRight");
+                        lastmove = "BR";
+                    }
+                    else if(lastmove != "R" && lastmove != "BR" && lastmove != "FR"){
+                        req.send(group + ".Right");
+                        lastmove = "R";
+                    }
                 }
                 else{
                     document.getElementById("display").innerHTML = "niet geldig";
@@ -86,7 +104,7 @@
                 document.getElementById("display").innerHTML = "stilstaan";  
                 document.getElementById("ForwardBackwards").innerHTML = "richting:";                     
                 document.getElementById("TurnAround").innerHTML = "Draaien:";
-                req.open("POST", "UIRequest", false);
+                req.open("POST", "UIRequest.txt", false);
                 if(lastmove != "S"){
                     req.send(group + ".Stop");
                 }
