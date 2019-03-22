@@ -8,8 +8,9 @@
         <script>
             function SendData(){
                 var req = new XMLHttpRequest();
-                req.open("GET", "GoLeft", true);
-                req.send();
+                req.open("POST", "file", false, "INF1J");
+                //Method, bestand, gelijktijdig: ja(true) of nee(false), username, password
+                req.send("Hello World");
             }
         </script>
     </body>

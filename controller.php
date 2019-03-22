@@ -29,6 +29,7 @@
         <div id="ForwardBackwards"> richting: </div>
         <div id="TurnAround"> Draaien: </div>
         <script>
+            group = "INF1J";
             lastmove = ""; //zodat er niet gespamt wordt.
             var req = new XMLHttpRequest();
             
@@ -42,33 +43,33 @@
                 }
                 if(x == 87){
                     document.getElementById("ForwardBackwards").innerHTML = "richting: voor<br>"; 
-                    req.open("GET", "GoForward", true);
+                    req.open("POST", "file", false);
                     if(lastmove != "F"){
-                        req.send();
+                        req.send(group + ".Forward");
                     }
                     lastmove = "F";
                 }
                 else if(x == 83){
                     document.getElementById("ForwardBackwards").innerHTML = "richting: achter<br>";
-                    req.open("GET", "GoBack", true);
+                    req.open("POST", "file", false);
                     if(lastmove != "B"){
-                        req.send();
+                        req.send(group + ".Backward");
                     }
                     lastmove = "B";
                 }
                 else if(x == 65){
                     document.getElementById("TurnAround").innerHTML = "Draaien: links<br>"; 
-                    req.open("GET", "GoLeft", true);
+                    req.open("POST", "file", false);
                     if(lastmove != "L"){
-                        req.send();
+                        req.send(group + ".Left");
                     }
                     lastmove = "L";
                 }
                 else if(x == 68){ 
                     document.getElementById("TurnAround").innerHTML = "Draaien: rechts<br>";   
-                    req.open("GET", "GoRight", true);
+                    req.open("POST", "file", false);
                     if(lastmove != "R"){
-                        req.send();
+                        req.send(group + ".Right");
                     }
                     lastmove = "R";
                 }
@@ -81,9 +82,9 @@
                 document.getElementById("display").innerHTML = "stilstaan";  
                 document.getElementById("ForwardBackwards").innerHTML = "richting:";                     
                 document.getElementById("TurnAround").innerHTML = "Draaien:";
-                req.open("GET", "Stop", true);
+                req.open("POST", "file", false);
                 if(lastmove != "S"){
-                    req.send();
+                    req.send(group + ".Stop");
                 }
                 lastmove = "S";
             }
