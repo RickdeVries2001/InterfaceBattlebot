@@ -37,7 +37,7 @@
                     ////'ws://echo.localhost:80/'
                     
                     connection.onopen = function () {
-                      connection.send("de server zegt:" + message); // Send the message 'Ping' to the server
+                      connection.send("de server zegt: " + message); // Send the message 'Ping' to the server
                       document.getElementById("box").innerHTML = "sent";
                     };                     
                     
