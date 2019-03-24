@@ -35,7 +35,7 @@
             
             group = <?php echo json_encode($group); ?>;
             lastmove = ""; //zodat er geen request gespamt worden wanneer je w/a/s/d inhoud
-            var req = new XMLHttpRequest();
+//            var req = new XMLHttpRequest();
             
             function GetKeyInput(){
                 var x = event.which || event.keyCode;
@@ -47,51 +47,51 @@
                 }
                 if(x == 87){
                     document.getElementById("ForwardBackwards").innerHTML = "richting: voor<br>"; 
-                    req.open("POST", "UIRequest.txt", false);
+//                    req.open("POST", "UIRequest.txt", false);
                     if(lastmove != "F"){
-                        req.send(group + ".Forward");
+//                        req.send(group + ".Forward");
                     }
                     lastmove = "F";
                 }
                 else if(x == 83){
                     document.getElementById("ForwardBackwards").innerHTML = "richting: achter<br>";
-                    req.open("POST", "UIRequest.txt", false);
+//                    req.open("POST", "UIRequest.txt", false);
                     if(lastmove != "B"){
-                        req.send(group + ".Backward");
+//                        req.send(group + ".Backward");
                     }
                     lastmove = "B";
                 }
                 else if(x == 65){
                     document.getElementById("TurnAround").innerHTML = "Draaien: links<br>"; 
-                    req.open("POST", "UIRequest.txt", false);
+//                    req.open("POST", "UIRequest.txt", false);
                     
                     if(lastmove == "F" && lastmove != "FL"){
-                        req.send(group + ".Forward_TurnLeft");
+//                        req.send(group + ".Forward_TurnLeft");
                         lastmove = "FL";
                     }
                     else if(lastmove == "B" && lastmove != "BL"){
-                        req.send(group + ".Backward_TurnLeft");
+//                        req.send(group + ".Backward_TurnLeft");
                         lastmove = "BL";
                     }
                     else if(lastmove != "L" && lastmove != "BL" && lastmove != "FL"){
-                        req.send(group + ".Left");
+//                        req.send(group + ".Left");
                         lastmove = "L";
                     }
                 }
                 else if(x == 68){ 
                     document.getElementById("TurnAround").innerHTML = "Draaien: rechts<br>";   
-                    req.open("POST", "UIRequest.txt", false);
+//                    req.open("POST", "UIRequest.txt", false);
                     
                     if(lastmove == "F" && lastmove != "FR"){
-                        req.send(group + ".Forward_TurnRight");
+//                        req.send(group + ".Forward_TurnRight");
                         lastmove = "FR";
                     }
                     else if(lastmove == "B" && lastmove != "BR"){
-                        req.send(group + ".Backward_TurnRight");
+//                        req.send(group + ".Backward_TurnRight");
                         lastmove = "BR";
                     }
                     else if(lastmove != "R" && lastmove != "BR" && lastmove != "FR"){
-                        req.send(group + ".Right");
+//                        req.send(group + ".Right");
                         lastmove = "R";
                     }
                 }
@@ -104,9 +104,9 @@
                 document.getElementById("display").innerHTML = "stilstaan";  
                 document.getElementById("ForwardBackwards").innerHTML = "richting:";                     
                 document.getElementById("TurnAround").innerHTML = "Draaien:";
-                req.open("POST", "UIRequest.txt", false);
+//                req.open("POST", "UIRequest.txt", false);
                 if(lastmove != "S"){
-                    req.send(group + ".Stop");
+//                    req.send(group + ".Stop");
                 }
                 lastmove = "S";
             }
