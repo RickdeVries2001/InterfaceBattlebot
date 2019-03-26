@@ -1,6 +1,6 @@
 <?php 
 	include 'functions/db.php';
-	include 'views/loginheader.php';
-	include 'views/notlogbody.php';
+	include 'views/header.php';
+	include 'views/scorebody.php';
 	include 'views/footer.php';
 ?>
