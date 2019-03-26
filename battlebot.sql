@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2019 at 12:09 PM
+-- Generation Time: Mar 26, 2019 at 02:48 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -61,6 +61,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`uid`, `uname`, `pw`, `mac`) VALUES
+(1, 'test1', 'testpw1', '12345'),
+(2, 'test2', 'testpw2', '123456');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -84,7 +92,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
