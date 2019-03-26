@@ -23,18 +23,18 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 ?>
 
-<p>Punt voor groep A: </p>
-<form action="sql1.php" method="POST">
-<select name="Group:">
-    <option value="GroepA">Groep A</option>
-    <option value="GroepB">Groep B</option>
-    <option value="GroepC">Groep C</option>
-	<option value="GroepD">Groep D</option>
-	<option value="GroepE">Groep E</option>
-    <option value="GroepG">Groep G</option>
-    <option value="GroepH">Groep H</option>
-	<option value="GroepI">Groep I</option>
-	<option value="GroepJ">Groep J</option>
+<p>Punten bijtellen: </p>
+<form action="scoreAdd.php" method="POST">
+<select name="Group">
+    <option value="1">Groep A</option>
+    <option value="3">Groep B</option>
+    <option value="5">Groep C</option>
+	<option value="6">Groep D</option>
+	<option value="8">Groep E</option>
+    <option value="9">Groep G</option>
+    <option value="10">Groep H</option>
+	<option value="11">Groep I</option>
+	<option value="12">Groep J</option>
 </select>
 <input type="text" name="input">
 <input type="submit" name="submit" value="Submit">
