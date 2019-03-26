@@ -96,14 +96,32 @@ switch ($_POST['req']) {
     <div id="scores"></div>
     <form onsubmit="return score.add();">
       <input type="hidden" id="game_id" value="<?=$game['game_id']?>"/>
-      <label for="score_home">Home Score</label>
-      <input type="text" id="score_home" value="0" required/>
+      <label for="score_teamA">Score Team A</label>
+      <input type="text" id="score_teamA" value="0" required/>
       <br>
-      <label for="score_away">Away Score</label>
-      <input type="text" id="score_away" value="0" required/>
+      <label for="score_teamB">Score Team B</label>
+      <input type="text" id="score_teamB" value="0" required/>
       <br>
-      <label for="score_comment">Comment</label>
-      <input type="text" id="score_comment"/>
+      <label for="score_teamC">Score Team C</label>
+      <input type="text" id="score_teamC" value="0" required/>
+      <br>
+      <label for="score_teamD">Score Team D</label>
+      <input type="text" id="score_teamD" value="0" required/>
+      <br>
+      <label for="score_teamE">Score Team E</label>
+      <input type="text" id="score_teamE" value="0" required/>
+      <br>
+      <label for="score_teamG">Score Team G</label>
+      <input type="text" id="score_teamG" value="0" required/>
+      <br>
+      <label for="score_teamH">Score Team H</label>
+      <input type="text" id="score_teamH" value="0" required/>
+      <br>
+      <label for="score_teamI">Score Team I</label>
+      <input type="text" id="score_teamI" value="0" required/>
+      <br>
+      <label for="score_teamJ">Score Team J</label>
+      <input type="text" id="score_teamJ" value="0" required/>
       <br>
       <input type="button" value="Back" onclick="admin.list()"/>
       <input type="submit" value="Save"/>
@@ -129,7 +147,7 @@ switch ($_POST['req']) {
 
   // ADD NEW SCORE
   case "score-add":
-    echo $gameDB->addScore($_POST['id'], $_POST['home'], $_POST['away'], $_POST['comment']) ? "OK" : "ERR" ;
+    echo $gameDB->addScore($_POST['id'], $_POST['score_teamA'], $_POST['score_teamB'], $_POST['score_teamC'], $_POST['score_teamD'], $_POST['score_teamE'], $_POST['score_teamG'], $_POST['score_teamH'], $_POST['score_teamI'], $_POST['score_teamJ'], $_POST['comment']) ? "OK" : "ERR" ;
     break;
 
   // DELETE SCORE
