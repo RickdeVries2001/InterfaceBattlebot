@@ -1,8 +1,10 @@
 body {
-  padding-top: 5rem;
-  height: 100%;
-  overflow: auto;
-  display: flex;
+	height: 100%;
+	overflow: auto;
+}
+.navstyle{
+	padding: 5px;
+	background-color: #212529;
 }
 .starter-template {
   padding: 3rem 1.5rem;
