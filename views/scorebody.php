@@ -29,7 +29,6 @@
 				}
 			?>
 
-			<p class="btn btn-dark">Punten bijtellen: </p>
 			<form action="Sam/scoreAdd.php" method="POST">
 				<select class="btn btn-dark" name="Group">
 					<?php
@@ -47,7 +46,7 @@
 					?>
 				</select>
 				<input class="btn btn-dark" type="text" name="input">
-				<input class="btn btn-dark" type="submit" name="submit" value="Submit">
+				<input class="btn btn-dark" type="submit" name="submit" value="Punten bijtellen!">
 			</form>
 
 		</div>
