@@ -2,6 +2,7 @@
 	include 'views/nav.html';
 ?>
 <div class="container">
+	<h1 class="samenthijs">Scoreboard</h1>
 	<div class="row">
 		<div class="col-sm">
 			<?php 
