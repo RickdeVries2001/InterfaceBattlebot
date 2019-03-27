@@ -45,7 +45,7 @@
 					}
 					?>
 				</select>
-				<input class="btn btn-dark" type="text" name="input">
+				<input class="btn btn-dark" type="text" name="input" autocomplete="off" required>
 				<input class="btn btn-dark" type="submit" name="submit" value="Punten bijtellen!">
 			</form>
 
