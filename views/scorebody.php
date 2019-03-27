@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-sm">
 			<?php 
-				$sql = "SELECT groups, score FROM score";
+				$sql = "SELECT groups, score FROM score ORDER BY score desc";
 
 				if ($stmt = mysqli_prepare($conn, $sql)) {
 					mysqli_stmt_execute($stmt);
@@ -32,15 +32,19 @@
 			<p class="btn btn-dark">Punten bijtellen: </p>
 			<form action="Sam/scoreAdd.php" method="POST">
 				<select class="btn btn-dark" name="Group">
-					<option value="1">Groep A</option>
-					<option value="3">Groep B</option>
-					<option value="5">Groep C</option>
-					<option value="6">Groep D</option>
-					<option value="8">Groep E</option>
-					<option value="9">Groep G</option>
-					<option value="10">Groep H</option>
-					<option value="11">Groep I</option>
-					<option value="12">Groep J</option>
+					<?php
+					$sql2 = "SELECT bot_id, groups FROM score";
+
+					if ($stmt = mysqli_prepare($conn, $sql2)) {
+						mysqli_stmt_execute($stmt);
+						mysqli_stmt_bind_result($stmt, $id, $groups);
+						mysqli_stmt_store_result($stmt);
+
+					while (mysqli_stmt_fetch($stmt)) {
+						echo "<option value=" . $id . ">" . $groups . "</option>";
+					}
+					}
+					?>
 				</select>
 				<input class="btn btn-dark" type="text" name="input">
 				<input class="btn btn-dark" type="submit" name="submit" value="Submit">
