@@ -32,6 +32,7 @@
         
         #lastmove{
             margin-top: 10px;
+            margin-bottom: 20px;
             font-weight: bold;
             font-size: 22px;
         }
@@ -163,11 +164,9 @@
                 <input type="radio" value="Q" name="q" id="q" checked="checked"/>
             </form>
         </div>
-        <p> Maak gebruik van de A-S-W-D toetsen om naar link, achteren, rechts en voren te bewegen. </p>
-        <p> Gebruik de q toets om stil te staan (om de actie niet meer uit te voeren.) </p>
-        <p> hieronder komt jouw laatste move te staan.</p>
-        <div id="demo"> </div>
-        <div id="demo2"> </div>
+        <p> Maak gebruik van de A-S-W-D toetsen om te bewegen en de Q toets om stil te staan. </p>
+        <div id="demo"> <!-- niet weghalen! deze zijn voor testen --></div>
+        <div id="demo2"> <!-- niet weghalen! deze zijn voor testen --></div>
         <div id="richtingbox">
             <?php
                 if(isset($_POST['w'])){
@@ -187,7 +186,10 @@
                 }
             ?>
         </div>
-        <div id="lastmove"> ..</div>
+        <div id="lastmove"> laatste move </div>
+        <p> Klik op de knop om aan het bijhorende spel te beginnen!</p>
+        <p> Klik op de stopknop als de robot het spel faalt. </p>
+        
         <script src="front-end/index.js"></script>
 		<?php
 		include 'front-end/sendCommand.php';
