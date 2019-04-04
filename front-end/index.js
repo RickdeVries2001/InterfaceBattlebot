@@ -59,8 +59,8 @@ var oldvar = new Date().getTime() / 1000;
 function myTimer() {
     var seconds = new Date().getTime() / 1000;
 
-    document.getElementById("demo").innerHTML = seconds;
-    document.getElementById("demo2").innerHTML = oldvar;
+//    document.getElementById("demo").innerHTML = seconds;
+//    document.getElementById("demo2").innerHTML = oldvar;
 
     if (oldvar < seconds){
         oldvar += wachttijd;
