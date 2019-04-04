@@ -26,18 +26,19 @@
                 //https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/protocol
                 if ("WebSocket" in window) {
                     message = "hallo wereld!";
-                    var connection = new WebSocket('ws://echo.websocket.org'); 
-                    //                              ws:// ...... /
-                    ////'ws://echo.websocket.org'
-                    //"ws://localhost:9998/echo"
-                    //"wss://www.example.com/socketserver"
-                    //"ws://localhost:8787"
                     
-                    //mogelijkeheden:
-                    ////'ws://echo.localhost:80/'
+                    //pas deze aan zodat het ip en de poort overeenkomen
+                    websocket = 'ws://echo.websocket.org'
                     
+                    //In de websocket komt te 'ws://IPADRES:PORT' te staan (van de server)
+                    //bijvoorbeeld: 'ws://127.0.0.1:80'
+                    //dit is het orgnieel: 'ws://echo.websocket.org' (voor een handshake)
+                    //Voor Servergroep: je moet alleen de variabele websocket aanpassen 
+                    //zodat hij overeenkomt met het ip en de port van de server
+                    
+                    var connection = new WebSocket(websocket); 
                     connection.onopen = function () {
-                      connection.send("de server zegt: " + message); // Send the message 'Ping' to the server
+                      connection.send("de server zegt:" + message); // Send the message 'Ping' to the server
                       document.getElementById("box").innerHTML = "sent";
                     };                     
                     
