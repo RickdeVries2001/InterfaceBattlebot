@@ -2,7 +2,7 @@
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
-	$databasename = "battlebot";
+	$databasename = "arduino";
 	$conn = mysqli_connect($servername, $username, $password, $databasename);
 
 	if(!$conn) {

@@ -6,11 +6,11 @@
   if(isset($_POST['submit'])){
   	$username = ($_POST['username']);
   	$password = ($_POST['password']);
-  	$SQLstring = "SELECT uid, uname, pw, robotname FROM users WHERE uname = ?";
+  	$SQLstring = "SELECT pass, username, btname FROM users WHERE username = ?";
   		if ($stmt = mysqli_prepare($conn, $SQLstring)) {
   			mysqli_stmt_bind_param($stmt, "s", $username);
   			mysqli_stmt_execute($stmt);
-  			mysqli_stmt_bind_result($stmt, $uid, $pw, $unamedb, $robotname);
+  			mysqli_stmt_bind_result($stmt, $pw, $unamedb, $robotname);
   			mysqli_stmt_store_result($stmt);
   			if (mysqli_stmt_num_rows($stmt) > 0) {
   				mysqli_stmt_fetch($stmt);
