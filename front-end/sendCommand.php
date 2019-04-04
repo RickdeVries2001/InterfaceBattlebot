@@ -1,7 +1,7 @@
 <?php
     include "dbConn.php";
     $cmd = isset($_POST["command"])? $_POST["command"] : "";
-    $user_id = $_COOKIE["id"];
+    $user_id = 1;
     
     if(isset($_POST['w']))
     {

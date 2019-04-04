@@ -23,7 +23,7 @@
         }
         
         body{
-            background-color: #444444;
+            background-color: #222222;
         }
         
         a{
@@ -33,6 +33,7 @@
         #lastmove{
             margin-top: 10px;
             font-weight: bold;
+            font-size: 22px;
         }
         
         #controllerbox input{
@@ -106,7 +107,7 @@
         #DisplayedController td{
             height: 80px;
             width: 80px;
-            border: 2px solid #444444;
+            border: 2px solid #222222;
         }
 
         .toets{
@@ -120,7 +121,7 @@
 
         .toets p{
             font-size: 16px;
-            opacity: 0.5;
+            opacity: 0.8;
         }
         
         .mainContent{
