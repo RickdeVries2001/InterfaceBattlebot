@@ -14,7 +14,7 @@ function Stop(){
         document.getElementById('lastmove').innerHTML = 'S'
         console.log(stopmessage);
         $.ajax( {
-                url: "sendCommand.php",
+                url: "front-end/sendCommand.php",
                 method: "POST",
                 data: {command: "S"},
                 dataType: "text",
@@ -72,7 +72,7 @@ function myTimer() {
 
         pressed = true;
         $.ajax( {
-            url: "sendCommand.php",
+            url: "front-end/sendCommand.php",
             method: "POST",
             data: {
                 command:cmd
