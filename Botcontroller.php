@@ -16,6 +16,10 @@
             margin: 0;
         }
         
+        a{
+            display: block;
+        }
+        
         #lastmove{
             font-size: 0;
             height: 0;
@@ -36,13 +40,18 @@
         #toetsQ{
             opacity: 0.3;
         }
+ 
+        #toetsQ p{
+            color: black;
+            font-size: 16px;
+        }
         
         #BeginGames{
             margin: 40px;
             margin-right: 0;
         }
         
-        #BeginGames input{
+        #BeginGames button{
             height: 100px;
             width: 100px;
             transform: skewX(-10deg);
@@ -70,6 +79,7 @@
             font-weight: 900;
             font-style: italic;
             float: left;
+            cursor: pointer;
         }
         
         #DisplayedController{
@@ -101,6 +111,8 @@
         <p> Maak gebruik van de A-S-W-D toetsen om naar link, achteren, rechts en voren te bewegen. </p>
         <h2> druk de knop langere tijd in</h2>
         <h3><a href="login.php">Inloggen</a> - <a href="logout.php">Uitloggen</a></h3>
+        <a href="index.php"> Home </a>
+        <a href="score.php"> Scoreboard </a>
         <div id="controllerbox">
             <input type="text" id="besturingsvak" onkeydown="GetKeyInput()" onkeyup="Stop()"> <!--   -->
 
@@ -150,25 +162,27 @@
 		?>
 
         <div id="BeginGames">
-            <input type="submit" id="Lijnrace" value="Lijnrace" onclick="clickLR()">
-            <input type="submit" id="Parcour" value="Parcour" onclick="clickP()">
-            <input type="submit" id="Horserace" value="Horserace" onclick="clickHR()">
-            <input type="submit" id="Zoektocht" value="Zoektocht" onclick="clickZT()">
+            <button id="Lijnrace" value="Lijnrace" onclick="StartGame('Lijnrace')"> Lijnrace </button>
+            <button id='Doos' value="Parcour" onclick="StartGame('Doos')"> Parcour </button>
+            <button id='Paardenrace' value="Horserace" onclick="StartGame('Paardenrace')"> Horserace </button>
+            <button id='Zoeken' value="Zoektocht" onclick="StartGame('Zoeken')"> Zoektocht </button>
         </div>
         
         <script>
-            function clickLR(){
-                document.getElementById('Lijnrace').style.backgroundColor = "tomato";
-            }           
-            function clickP(){
-                document.getElementById('Parcour').style.backgroundColor = "tomato";
-            }          
-            function clickHR(){
-                document.getElementById('Horserace').style.backgroundColor = "tomato";
-            }      
-            function clickZT(){
-                document.getElementById('Zoektocht').style.backgroundColor = "tomato";
-            }    
+            function StartGame(game){
+                console.log(game);
+                $.ajax( {
+                    url: "front-end/sendCommand.php",
+                    method: "POST",
+                    data: {command:game},
+                    dataType: "text",
+                    success: function(strMessage) {
+                        $("#stopped").text(strMessage);
+                    }
+                });  
+                document.getElementById(game).style.backgroundColor = "tomato";
+            }
+
             function GiveControllerInstruction(){
                 alert("Gebruik de toetsen op je toetsenbord om de robot te besturen!");
             }
@@ -176,7 +190,7 @@
         <div id="DisplayedController" onclick="GiveControllerInstruction()">
             <table>
                 <tr>
-                    <td id="toetsQ" class="toets">Q</td>
+                    <td id="toetsQ" class="toets">Q <p>(stop)</p></td>
                     <td id="toetsW" class="toets">W</td>
                     <td></td>
                 </tr>
@@ -188,7 +202,7 @@
             </table>
         </div>
 
-        <div id="FullStopButton">
+        <div id="FullStopButton" onclick="StartGame('Stop')" onmousedown="FullStop()" onmouseup="stopstop()">
             STOP SPEL
         </div>
         
@@ -243,6 +257,14 @@
                 Qtoets.style.backgroundColor = '#bfbfbf';
             }
 
+            function FullStop(){
+                document.getElementById("FullStopButton").style.backgroundColor = "red";
+            }
+            
+            function stopstop(){
+                document.getElementById("FullStopButton").style.backgroundColor = "tomato";             
+            }
+            
             audio.onended = function() {
                 audio.currentTime = 0;
             };
