@@ -21,9 +21,9 @@
         }
         
         #lastmove{
-            font-size: 0;
+/*            font-size: 0;
             height: 0;
-            width: 0;
+            width: 0;*/
         }
         #controllerbox input{
             opacity: 0;
@@ -109,7 +109,7 @@
 </head>
 <body>
         <p> Maak gebruik van de A-S-W-D toetsen om naar link, achteren, rechts en voren te bewegen. </p>
-        <h2> druk de knop langere tijd in</h2>
+        <p> Gebruik de q toets om stil te staan (om de actie niet meer uit te voeren.) </p>
         <h3><a href="login.php">Inloggen</a> - <a href="logout.php">Uitloggen</a></h3>
         <a href="index.php"> Home </a>
         <a href="score.php"> Scoreboard </a>
@@ -135,7 +135,8 @@
             </form>
         </div>
 
-        <div id="Infotest"> </div>
+        <div id="demo"> </div>
+        <div id="demo2"> </div>
         <div id="richtingbox">
             <?php
                 if(isset($_POST['w'])){

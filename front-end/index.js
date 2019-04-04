@@ -3,6 +3,8 @@ window.addEventListener("keydown", getKeyPress);
 //mocht het niet kloppen dan kun je dit weghalen
 window.addEventListener("keyup", Stop);
 
+pressed = false;
+
 function Stop(){   
     if(document.getElementById('lastmove').innerHTML == "F" || 
     document.getElementById('lastmove').innerHTML == "B" || 
@@ -21,12 +23,15 @@ function Stop(){
                 }
         });
     }
+    pressed = false;
 }
 
+let cmd = "";
+    
 function getKeyPress()
 {
+    pressed = true;
     let x = event.which || event.keyCode;
-    let cmd = "";
     switch(x)
     {
         case 87:
@@ -45,22 +50,40 @@ function getKeyPress()
             cmd = "S";
         break;
     }
-    if(document.getElementById('lastmove').innerHTML != cmd){
-	if(cmd != ""){
+}
+
+var wachttijd = 0.5;
+var myVar = setInterval(myTimer, wachttijd * 1000);
+var oldvar = new Date().getTime() / 1000;
+        
+function myTimer() {
+    var seconds = new Date().getTime() / 1000;
+
+    document.getElementById("demo").innerHTML = seconds;
+    document.getElementById("demo2").innerHTML = oldvar;
+
+    if (oldvar < seconds){
+        oldvar += wachttijd;
+    }
+    if(cmd != "" && (pressed == true)){ 
         //als hij eerder is ingedrukt, moet hij niet meer spammen
-		$.ajax( {
-			url: "sendCommand.php",
-			method: "POST",
-			data: {
-                            command:cmd
-			},
-			dataType: "text",
-			success: function(strMessage) {
-                            $("#stopped").text(strMessage);
-			}
-		});
-            console.log(cmd);
-            document.getElementById('lastmove').innerHTML = cmd;
-	}
+        //hij moet niet iets sturen als er een nieuwe s binnen komt
+        //het laatste command is niet al gebeurd
+
+        pressed = true;
+        $.ajax( {
+            url: "sendCommand.php",
+            method: "POST",
+            data: {
+                command:cmd
+            },
+            dataType: "text",
+            success: function(strMessage) {
+                $("#stopped").text(strMessage);
+            }
+        });
+        document.getElementById('lastmove').innerHTML = cmd;     
+        console.log(cmd); 
+        cmd = "";
     }
 }
