@@ -2,8 +2,13 @@
     include "dbConn.php";
     $cmd = isset($_POST["command"])? $_POST["command"] : "";
     
-        $user_id = $_GET['id'];
-        $user_id = "".$user_id;
+//        $user_id = $_GET['id'];
+//        $user_id = "".$user_id;
+//            $user_id = 1;
+        if($_GET['id'] == "1"){
+            $user_id = 1;
+            echo "komt overeen";
+        }
         
         if(isset($_POST['w']))
         {
@@ -28,7 +33,7 @@
             $SQLstring2 = "INSERT INTO user_cmd (user_id, cmd) VALUES(?, ?)";
             if ($stmt = mysqli_prepare($conn, $SQLstring2))
             {
-                mysqli_stmt_bind_param($stmt, 'ss', $user_id, $cmd);
+                mysqli_stmt_bind_param($stmt, 'is', $user_id, $cmd);
                 $QueryResult2 = mysqli_stmt_execute($stmt);
                 if ($QueryResult2 === FALSE)
                 {
