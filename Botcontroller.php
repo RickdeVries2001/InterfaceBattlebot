@@ -137,6 +137,29 @@
             color: tomato;
         }
         
+        #controlvoorkeuren{
+            float: right;
+        }
+
+        #controlvoorkeuren div{
+            padding: 5px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        #ASWDstop{
+            background-color: cadetblue;
+            opacity: 1;
+        }
+        
+        #useQstop{
+            background-color: tomato;
+            opacity: 0.2;
+        }
+        
     </style>
 </head>
 <body>
@@ -194,6 +217,12 @@
         <p> Klik op de knop om aan het bijhorende spel te beginnen!</p>
         <p> Klik op de stopknop als de robot het spel faalt. </p>
         
+        <div id="controlvoorkeuren">
+            <h3> Robot moet stoppen bij: </h3>
+            <div id="ASWDstop" onclick="useWASDstop()"> loslaten ASWD toets </div>
+            <div id="useQstop" onclick="useQstop()"> indrukken Q toets </div>
+        </div>
+        
         <script src="front-end/index.js"></script>
 		<?php
 		include 'front-end/sendCommand.php';
@@ -243,7 +272,7 @@
         <div id="FullStopButton" onclick="StartGame('Stop')" onmousedown="FullStop()" onmouseup="stopstop()">
             STOP SPEL <p> (noodstop)</p>
         </div>
-        
+       
         <?php
             $sound = 'Car.mp3'
         ?>
@@ -256,6 +285,7 @@
             Stoets = document.getElementById("toetsS");
             Dtoets = document.getElementById("toetsD");
             Qtoets = document.getElementById("toetsQ");
+            
             
             function GetKeyInput(){
                 q = event.which || event.keyCode;

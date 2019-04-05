@@ -3,27 +3,45 @@ window.addEventListener("keydown", getKeyPress);
 //mocht het niet kloppen dan kun je dit weghalen
 window.addEventListener("keyup", Stop);
 
-pressed = false;
+WASD = document.getElementById('ASWDstop');
+Qkey = document.getElementById('useQstop');
+//WASD.addEventListener("onclick", useWASDstop);
+//Qkey.addEventListener("onclick", useQstop);
+
+ReleaseToStop = true;
+
+function useWASDstop(){
+    WASD.style.opacity = 1;
+    Qkey.style.opacity = 0.2;
+    ReleaseToStop = true;
+}
+
+function useQstop(){
+    WASD.style.opacity = 0.2;
+    Qkey.style.opacity = 1;
+    ReleaseToStop = false;
+}
 
 function Stop(){   
-    if(document.getElementById('lastmove').innerHTML == "F" || 
-    document.getElementById('lastmove').innerHTML == "B" || 
-    document.getElementById('lastmove').innerHTML == "L" || 
-    document.getElementById('lastmove').innerHTML == "R"){	
-        stopmessage = "S";
-        document.getElementById('lastmove').innerHTML = 'S'
-        console.log(stopmessage);
-        $.ajax( {
-                url: "front-end/sendCommand.php",
-                method: "POST",
-                data: {command: "S"},
-                dataType: "text",
-                success: function(strMessage) {
-                    $("#stopped").text(strMessage);
-                }
-        });
+    if(ReleaseToStop){
+        if(document.getElementById('lastmove').innerHTML == "F" || 
+        document.getElementById('lastmove').innerHTML == "B" || 
+        document.getElementById('lastmove').innerHTML == "L" || 
+        document.getElementById('lastmove').innerHTML == "R"){	
+            stopmessage = "S";
+            document.getElementById('lastmove').innerHTML = 'S'
+            console.log(stopmessage);
+            $.ajax( {
+                    url: "front-end/sendCommand.php",
+                    method: "POST",
+                    data: {command: "S"},
+                    dataType: "text",
+                    success: function(strMessage) {
+                        $("#stopped").text(strMessage);
+                    }
+            });
+        }
     }
-    pressed = false;
 }
 
 let cmd = "";
@@ -50,27 +68,11 @@ function getKeyPress()
             cmd = "S";
         break;
     }
-}
-
-var wachttijd = 0.1;
-var myVar = setInterval(myTimer, wachttijd * 1000);
-var oldvar = new Date().getTime() / 1000;
-        
-function myTimer() {
-    var seconds = new Date().getTime() / 1000;
-
-//    document.getElementById("demo").innerHTML = seconds;
-//    document.getElementById("demo2").innerHTML = oldvar;
-
-    if (oldvar < seconds){
-        oldvar += wachttijd;
-    }
-    if(cmd != "" && (pressed == true)){ 
-        //als hij eerder is ingedrukt, moet hij niet meer spammen
-        //hij moet niet iets sturen als er een nieuwe s binnen komt
-        //het laatste command is niet al gebeurd
-
-        pressed = true;
+    
+    //als je deze command wilt spammen terwijl de toets ingedrukt is 
+    //moet je deze if statement wegcommenten en de comments onderaan uncommenten
+    
+    if(cmd != document.getElementById('lastmove').innerHTML){
         $.ajax( {
             url: "front-end/sendCommand.php",
             method: "POST",
@@ -84,6 +86,33 @@ function myTimer() {
         });
         document.getElementById('lastmove').innerHTML = cmd;     
         console.log(cmd); 
-        cmd = "";
     }
 }
+
+
+//deze code is voor het regelmatig verzenden van de commandos
+//bijvoorbeeld 1x per seconde of 10x per seconde
+ 
+//var wachttijd = 0.1;
+//var myVar = setInterval(myTimer, wachttijd * 1000);
+//var oldvar = new Date().getTime() / 1000;
+//        
+//function myTimer() {
+//    var seconds = new Date().getTime() / 1000;
+//
+////    document.getElementById("demo").innerHTML = seconds;
+////    document.getElementById("demo2").innerHTML = oldvar;
+//
+//    if (oldvar < seconds){
+//        oldvar += wachttijd;
+//    }
+//    if(cmd != "" && (pressed == true)){ 
+//        //als hij eerder is ingedrukt, moet hij niet meer spammen
+//        //hij moet niet iets sturen als er een nieuwe s binnen komt
+//        //het laatste command is niet al gebeurd
+//
+//        pressed = true;
+//
+//        cmd = "";
+//    }
+//}
