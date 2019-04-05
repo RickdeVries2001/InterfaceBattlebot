@@ -1,5 +1,8 @@
-<?php
-	include "views/header.php";
+<?php 
+    if(empty($_GET['id'])){
+        header('location: index.php');
+    }
+    include "views/header.php";
 ?>
 <div class="container">
 	<div class="row">

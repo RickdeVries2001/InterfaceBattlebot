@@ -1,3 +1,8 @@
+<?php 
+    if(empty($_GET['id'])){
+        header('location: index.php');
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +19,24 @@
             font-family: roboto;
             padding: 0;
             margin: 0;
+            color: white;
+        }
+        
+        body{
+            background-color: #222222;
         }
         
         a{
-            display: block;
+            color: cadetblue;
         }
         
         #lastmove{
-            font-size: 0;
-            height: 0;
-            width: 0;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 22px;
         }
+        
         #controllerbox input{
             opacity: 0;
             height: 0px;
@@ -40,10 +52,9 @@
         #toetsQ{
             opacity: 0.3;
         }
- 
+        
         #toetsQ p{
             color: black;
-            font-size: 16px;
         }
         
         #BeginGames{
@@ -61,7 +72,7 @@
             color: white;
             font-weight: bold;
             font-size: 18px;
-            margin-left: 2px;
+            margin-left: 10px;
             cursor: pointer;
         }
         
@@ -81,6 +92,10 @@
             float: left;
             cursor: pointer;
         }
+
+        #FullStopButton p{
+            font-size: 10px;
+        }
         
         #DisplayedController{
             margin: 20px;
@@ -93,7 +108,7 @@
         #DisplayedController td{
             height: 80px;
             width: 80px;
-            border: 2px solid white;
+            border: 2px solid #222222;
         }
 
         .toets{
@@ -105,14 +120,33 @@
             border-radius: 5px;
         }
 
+        .toets p{
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        .mainContent{
+            width: 80vw;
+            height: calc(100vh - 30px);
+            margin-left: 10vw;
+            margin-top: 20px;
+        }
+        
+        #logoutbutton{
+            float: right;
+            color: tomato;
+        }
+        
     </style>
 </head>
 <body>
-        <p> Maak gebruik van de A-S-W-D toetsen om naar link, achteren, rechts en voren te bewegen. </p>
-        <h2> druk de knop langere tijd in</h2>
-        <h3><a href="login.php">Inloggen</a> - <a href="logout.php">Uitloggen</a></h3>
-        <a href="index.php"> Home </a>
-        <a href="score.php"> Scoreboard </a>
+    <div class="mainContent">
+        <h3><a href="score.php        
+            <?php if(isset($_GET['id'])){
+                    echo '?id='.$_GET['id'];
+            }?>
+        "> Scoreboard </a> <a id="logoutbutton" href="logout.php">Uitloggen</a></h3>
+        
         <div id="controllerbox">
             <input type="text" id="besturingsvak" onkeydown="GetKeyInput()" onkeyup="Stop()"> <!--   -->
 
@@ -134,8 +168,9 @@
                 <input type="radio" value="Q" name="q" id="q" checked="checked"/>
             </form>
         </div>
-
-        <div id="Infotest"> </div>
+        <p> Maak gebruik van de A-S-W-D toetsen om te bewegen en de Q toets om stil te staan. </p>
+        <div id="demo"> <!-- niet weghalen! deze zijn voor testen --></div>
+        <div id="demo2"> <!-- niet weghalen! deze zijn voor testen --></div>
         <div id="richtingbox">
             <?php
                 if(isset($_POST['w'])){
@@ -155,17 +190,20 @@
                 }
             ?>
         </div>
-        <div id="lastmove"> ..</div>
+        <div id="lastmove"> laatste move </div>
+        <p> Klik op de knop om aan het bijhorende spel te beginnen!</p>
+        <p> Klik op de stopknop als de robot het spel faalt. </p>
+        
         <script src="front-end/index.js"></script>
 		<?php
 		include 'front-end/sendCommand.php';
 		?>
 
         <div id="BeginGames">
-            <button id="Lijnrace" value="Lijnrace" onclick="StartGame('Lijnrace')"> Lijnrace </button>
-            <button id='Doos' value="Parcour" onclick="StartGame('Doos')"> Parcour </button>
-            <button id='Paardenrace' value="Horserace" onclick="StartGame('Paardenrace')"> Horserace </button>
-            <button id='Zoeken' value="Zoektocht" onclick="StartGame('Zoeken')"> Zoektocht </button>
+            <button id="Lijnrace" onclick="StartGame('Lijnrace')"> Lijnrace </button>
+            <button id='Doos' onclick="StartGame('Doos')"> Parcours </button>
+            <button id='Paardenrace' onclick="StartGame('Paardenrace')"> Horserace </button>
+            <button id='Zoeken' onclick="StartGame('Zoeken')"> Zoektocht </button>
         </div>
         
         <script>
@@ -191,19 +229,19 @@
             <table>
                 <tr>
                     <td id="toetsQ" class="toets">Q <p>(stop)</p></td>
-                    <td id="toetsW" class="toets">W</td>
+                    <td id="toetsW" class="toets">W <p> (voren)</p></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td id="toetsA" class="toets">A</td>
-                    <td id="toetsS" class="toets">S</td>
-                    <td id="toetsD" class="toets">D</td>
+                    <td id="toetsA" class="toets">A <p> (links)</p></td>
+                    <td id="toetsS" class="toets">S <p> (achter)</p></td>
+                    <td id="toetsD" class="toets">D <p> (rechts)</p></td>
                 </tr>
             </table>
         </div>
 
         <div id="FullStopButton" onclick="StartGame('Stop')" onmousedown="FullStop()" onmouseup="stopstop()">
-            STOP SPEL
+            STOP SPEL <p> (noodstop)</p>
         </div>
         
         <?php
@@ -273,5 +311,6 @@
                 document.getElementById("besturingsvak").select();
             }, 50);
         </script>
+    </div>
 </body>
 </html>
