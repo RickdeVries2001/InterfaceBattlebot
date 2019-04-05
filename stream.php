@@ -1,4 +1,7 @@
-<?php
+<?php 
+//    if(empty($_COOKIE['id'])){
+//        header('Location: index.php');
+//    }
 	include "views/header.php";
 ?>
 <div class="container">

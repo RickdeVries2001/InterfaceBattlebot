@@ -16,7 +16,6 @@
   				mysqli_stmt_fetch($stmt);
   				if($password === $pw) {
 					$expire = time()+60*60*24*30;
-  					setcookie("id", $id ,$expire);
   					echo "<p>Je bent ingelogd!</p>";
   					//header('Location: ../score.php');
   				}

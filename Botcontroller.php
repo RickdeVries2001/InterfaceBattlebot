@@ -1,6 +1,6 @@
 <?php 
-//    if(empty($_COOCKIE['id'])){
-//        die('<a href="login.php">please login</a>'); 
+//    if(empty($_COOKIE['id'])){
+//        header('Location: index.php');
 //    }
 ?>
 <!DOCTYPE html>
