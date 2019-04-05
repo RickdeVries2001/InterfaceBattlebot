@@ -235,10 +235,10 @@
 		?>
 
         <div id="BeginGames">
-            <button id="Lijnrace" onclick="StartGame('Lijnrace')"> Lijnrace </button>
-            <button id='Doos' onclick="StartGame('Doos')"> Parcours </button>
-            <button id='Paardenrace' onclick="StartGame('Paardenrace')"> Horserace </button>
-            <button id='Zoeken' onclick="StartGame('Zoeken')"> Zoektocht </button>
+            <button id="Lijnrace" onclick="StartGame('1')"> Lijnrace </button>
+            <button id='Doos' onclick="StartGame('4')"> Parcours </button>
+            <button id='Paardenrace' onclick="StartGame('3')"> Horserace </button>
+            <button id='Zoeken' onclick="StartGame('2')"> Zoektocht </button>
         </div>
         
         <script>
@@ -253,7 +253,6 @@
                         $("#stopped").text(strMessage);
                     }
                 });  
-                document.getElementById(game).style.backgroundColor = "tomato";
             }
 
             function GiveControllerInstruction(){
@@ -275,7 +274,7 @@
             </table>
         </div>
 
-        <div id="FullStopButton" onclick="StartGame('Stop')" onmousedown="FullStop()" onmouseup="stopstop()">
+        <div id="FullStopButton" onclick="StartGame('5')" onmousedown="FullStop()" onmouseup="stopstop()">
             STOP SPEL <p> (noodstop)</p>
         </div>
        
