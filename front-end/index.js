@@ -52,7 +52,7 @@ function getKeyPress()
     }
 }
 
-var wachttijd = 0.5;
+var wachttijd = 0.1;
 var myVar = setInterval(myTimer, wachttijd * 1000);
 var oldvar = new Date().getTime() / 1000;
         
