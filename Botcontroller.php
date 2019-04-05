@@ -311,13 +311,19 @@
 
                 if(q == 81){
                     Qtoets.style.backgroundColor = 'grey';
+                    if(!ReleaseToStop){
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
                 }
                 
             }
 
             function Stop(){
-                audio.pause();
-                audio.currentTime = 0;
+                if(ReleaseToStop){
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
                 Wtoets.style.backgroundColor = '#bfbfbf';
                 Atoets.style.backgroundColor = '#bfbfbf';
                 Stoets.style.backgroundColor = '#bfbfbf';
