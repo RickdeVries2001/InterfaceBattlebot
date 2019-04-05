@@ -1,6 +1,12 @@
 <?php 
-    if(empty($_GET['id'])){
-        header('location: index.php');
+    if(empty($_COOKIE['id'])){
+        if(isset($_GET['id'])){
+            setcookie("id", $_GET['id'], time() + (86400 * 30));
+            header('location: Botcontroller.php?id='.$_GET['id']);
+        }
+        else{
+            header('location: index.php');
+        }
     }
 ?>
 <!DOCTYPE html>

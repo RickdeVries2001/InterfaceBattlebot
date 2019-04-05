@@ -1,12 +1,8 @@
 window.addEventListener("keydown", getKeyPress);
-
-//mocht het niet kloppen dan kun je dit weghalen
 window.addEventListener("keyup", Stop);
 
 WASD = document.getElementById('ASWDstop');
 Qkey = document.getElementById('useQstop');
-//WASD.addEventListener("onclick", useWASDstop);
-//Qkey.addEventListener("onclick", useQstop);
 
 ReleaseToStop = true;
 
@@ -48,7 +44,6 @@ let cmd = "";
     
 function getKeyPress()
 {
-    pressed = true;
     let x = event.which || event.keyCode;
     switch(x)
     {
