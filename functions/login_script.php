@@ -20,7 +20,7 @@
 						  echo "<p>Je bent ingelogd!</p>";
 						  print_r($_COOKIE);
 						  header('Location: ../score.php');
-						  exit;
+						  
   					}
   					else { echo 'Verkeerd wachtwoord!';}
   				}
