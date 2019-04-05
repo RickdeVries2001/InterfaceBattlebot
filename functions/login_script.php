@@ -15,12 +15,8 @@
   				if (mysqli_stmt_num_rows($stmt) > 0) {
   					mysqli_stmt_fetch($stmt);
   					if($password === $pw) {
-						$expire = time()+80000;
-  						setcookie("id", $id, $expire);
-						  echo "<p>Je bent ingelogd!</p>";
-						  print_r($_COOKIE);
-						  header('Location: ../score.php');
-						  
+                                            //echo "<p>Je bent ingelogd!</p>";
+                                            header("Location: ../score.php?id=$id");
   					}
   					else { echo 'Verkeerd wachtwoord!';}
   				}

@@ -1,7 +1,9 @@
 <?php
     include "dbConn.php";
     $cmd = isset($_POST["command"])? $_POST["command"] : "";
+    
         $user_id = $_GET['id'];
+        $user_id = "".$user_id;
         
         if(isset($_POST['w']))
         {
