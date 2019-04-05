@@ -1,8 +1,8 @@
 <?php 
-//    if(empty($_COOKIE['id'])){
-//        header('Location: index.php');
-//    }
-	include "views/header.php";
+    if(empty($_GET['id'])){
+        header('location: index.php');
+    }
+    include "views/header.php";
 ?>
 <div class="container">
 	<div class="row">

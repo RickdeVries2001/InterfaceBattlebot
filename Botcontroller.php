@@ -1,7 +1,7 @@
 <?php 
-//    if(empty($_COOKIE['id'])){
-//        header('Location: index.php');
-//    }
+    if(empty($_GET['id'])){
+        header('location: index.php');
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -141,7 +141,11 @@
 </head>
 <body>
     <div class="mainContent">
-        <h3><a href="score.php"> Scoreboard </a> <a id="logoutbutton" href="logout.php">Uitloggen</a></h3>
+        <h3><a href="score.php        
+            <?php if(isset($_GET['id'])){
+                    echo '?id='.$_GET['id'];
+            }?>
+        "> Scoreboard </a> <a id="logoutbutton" href="logout.php">Uitloggen</a></h3>
         
         <div id="controllerbox">
             <input type="text" id="besturingsvak" onkeydown="GetKeyInput()" onkeyup="Stop()"> <!--   -->

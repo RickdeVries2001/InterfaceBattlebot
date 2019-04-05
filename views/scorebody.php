@@ -1,5 +1,5 @@
 <?php include 'Sam/connect.php';
-	include 'views/nav.html';
+	include 'views/nav.php';
 ?>
 <div class="container">
 	<h1 class="samenthijs">Scoreboard</h1>

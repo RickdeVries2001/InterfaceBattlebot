@@ -16,8 +16,8 @@
   				mysqli_stmt_fetch($stmt);
   				if($password === $pw) {
 					$expire = time()+60*60*24*30;
-  					echo "<p>Je bent ingelogd!</p>";
-  					//header('Location: ../score.php');
+  					//echo "<p>Je bent ingelogd!</p>";
+  					header("Location: ../score.php?id=$id");
   				}
   				else { echo 'Verkeerd wachtwoord!';}
   			}
