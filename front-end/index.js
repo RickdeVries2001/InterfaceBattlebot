@@ -75,7 +75,7 @@ function myTimer() {
             url: "front-end/sendCommand.php",
             method: "POST",
             data: {
-                command:cmd
+                command:cmd,
             },
             dataType: "text",
             success: function(strMessage) {
