@@ -9,6 +9,9 @@
         }
     }
 ?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -275,7 +278,7 @@
         </div>
 
         <div id="FullStopButton" onclick="StartGame('5')" onmousedown="FullStop()" onmouseup="stopstop()">
-            STOP SPEL <p> (noodstop)</p>
+            STOP SPEL
         </div>
        
         <?php

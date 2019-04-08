@@ -1,74 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-    function showUser(str) {
-      if (str=="") {
-        document.getElementById("txtHint").innerHTML="";
-        return;
-      } 
-      if (window.XMLHttpRequest) {
-        xmlhttp=new XMLHttpRequest();
-      } else { // code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange=function() {
-        if (this.readyState==4 && this.status==200) {
-          document.getElementById("txtHint").innerHTML=this.responseText;
+    <style>
+        .teamcmd{
+            display: inline;
         }
-      }
-      xmlhttp.open("GET","getuser.php?q="+str,true);
-      xmlhttp.send();
-    }
-</script>
-
-<?php
-    $q = intval($_GET['q']);
-
-    $con = mysqli_connect('localhost','peter','abc123','my_db');
-    if (!$con) {
-        die('Could not connect: ' . mysqli_error($con));
-    }
-
-    mysqli_select_db($con,"ajax_demo");
-    $sql="SELECT * FROM user WHERE id = '".$q."'";
-    $result = mysqli_query($con,$sql);
-
-    echo "<table>
-    <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Age</th>
-    <th>Hometown</th>
-    <th>Job</th>
-    </tr>";
-    while($row = mysqli_fetch_array($result)) {
-        echo "<tr>";
-        echo "<td>" . $row['FirstName'] . "</td>";
-        echo "<td>" . $row['LastName'] . "</td>";
-        echo "<td>" . $row['Age'] . "</td>";
-        echo "<td>" . $row['Hometown'] . "</td>";
-        echo "<td>" . $row['Job'] . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-    mysqli_close($con);
-?>
-
+        
+        .teamname{
+            display: inline; 
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<form>
-<select name="users" onchange="showUser(this.value)">
-<option value="">Select a person:</option>
-<option value="1">Peter Griffin</option>
-<option value="2">Lois Griffin</option>
-<option value="3">Joseph Swanson</option>
-<option value="4">Glenn Quagmire</option>
-</select>
-</form>
-<br>
-<div id="txtHint"><b>Person info will be listed here.</b></div>
+    <div id="txtHint">Database informatie</div>
+    <div id="feedback"> </div>
+        <div id="audioPlayers"> </div>
+        
+    <audio volume="0.1" id='playINF1A'> <source src='Sounds/INF1J.mp3' type='audio/mpeg'> </audio>     
+    <audio volume="0.1" id='playINF1B'> <source src='Sounds/INF1J.mp3' type='audio/mpeg'> </audio>        
+    <audio volume="0.1" id='playINF1C'> <source src='Sounds/INF1J.mp3' type='audio/mpeg'> </audio>        
+    <audio volume="0.1" id='playINF1D'> <source src='Sounds/INF1J.mp3' type='audio/mpeg'> </audio>     
+    <audio volume="0.1" id='playINF1E'> <source src='Sounds/INF1J.mp3' type='audio/mpeg'> </audio>        
+    <audio volume="0.1" id='playINF1G'> <source src='Sounds/INF1J.mp3' type='audio/mpeg'> </audio>
+    <audio volume="0.1" id='playINF1H'> <source src='Sounds/INF1J.mp3' type='audio/mpeg'> </audio>        
+    <audio volume="0.1" id='playINF1I'> <source src='Sounds/INF1J.mp3' type='audio/mpeg'> </audio>
+    <audio volume="0.1" id='playINF1J'> <source src='Sounds/INF1J.mp3' type='audio/mpeg'> </audio>
 
+    <script>
+        function GetMoves(){
+            if (window.XMLHttpRequest) {
+                xmlhttp=new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
+            } else {
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); // code for IE6, IE5
+            }
+            xmlhttp.onreadystatechange=function() {
+                if(xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    document.getElementById("txtHint").innerHTML= xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET","front-end/getUserMoves.php?q=q",true);
+            xmlhttp.send();
+            //console.log('succes!');
+        }
+
+
+        var wachttijd = 0.1; //delay
+        var myVar = setInterval(myTimer, wachttijd * 1000);
+        var oldvar = new Date().getTime() / 1000;
+
+        function myTimer() {
+            var seconds = new Date().getTime() / 1000;
+
+            if (oldvar < seconds){
+                oldvar += wachttijd;
+            }
+            GetMoves();
+            
+            Teams = ["A", "B", "C", "D", "E", "G", "H", "I", "J"];
+            
+            for(x = 0; x < 9; x++){
+                if(document.getElementById("INF1" + Teams[x])){
+                    if(document.getElementById("INF1" + Teams[x]).innerHTML == "S"
+                    || document.getElementById("INF1" + Teams[x]).innerHTML == "5"){
+                        document.getElementById("playINF1" + Teams[x]).pause();
+                        document.getElementById("playINF1" + Teams[x]).currentTime = 0.5;
+                    }
+                    
+                    if(document.getElementById("INF1" + Teams[x]).innerHTML == "F"
+                    || document.getElementById("INF1" + Teams[x]).innerHTML == "B"
+                    || document.getElementById("INF1" + Teams[x]).innerHTML == "L"
+                    || document.getElementById("INF1" + Teams[x]).innerHTML == "R"
+                    || document.getElementById("INF1" + Teams[x]).innerHTML == 1
+                    || document.getElementById("INF1" + Teams[x]).innerHTML == 2
+                    || document.getElementById("INF1" + Teams[x]).innerHTML == 3
+                    || document.getElementById("INF1" + Teams[x]).innerHTML == 4){
+                        document.getElementById("playINF1" + Teams[x]).play();
+                    }
+                }
+            }
+        }
+
+    </script>
+<!--    <div onclick='playaudio()'> knopje knopje </div> 
+    <script> 
+        var vid = document.getElementById('INF1J'); 
+        function playaudio(){
+            vid.play();
+        }
+    </script>-->
 </body>
 </html>
