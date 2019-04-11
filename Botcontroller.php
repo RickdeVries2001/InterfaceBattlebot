@@ -56,6 +56,13 @@
             opacity: 0.2;
         }
         
+        #isstopped{
+            font-weight: bold;
+            font-size: 22px;  
+            display: inline;
+            opacity: 0.2;            
+        }
+        
         #controllerbox input{
             opacity: 0;
             height: 0px;
@@ -266,6 +273,7 @@
             <div id="richtingbox"></div>-->
             <div id="lastinput"></div> <!-- niet weghalen! -->
             <div id="lastmove"></div> <!-- niet weghalen! -->
+            <div id="isstopped"></div> <!-- niet weghalen! -->
 <!--            <p> Klik op de knop om aan het bijhorende spel te beginnen!</p>
             <p> Klik op de stopknop als het spel afgelopen is of als de robot het spel faalt</p>-->
 
@@ -284,45 +292,58 @@
             </div>
         </div>
         
-                
+<!--                //&& document.getElementById("isstopped").innerHTML == "5"-->
         <script>
             function StartGame(game){
                 if(game == "R1" && document.getElementById("lastinput").innerHTML == ""){
                     document.getElementById("rijLijnRace").style.opacity = 0.2;
                     ValidClick = true;
-                } else if(game == "R1" && document.getElementById("lastinput").innerHTML == "5"){
-                    document.getElementById("rijLijnRace").style.opacity = 0.2;
-                    ValidClick = true;
-                } else if(game == "1" && document.getElementById("lastinput").innerHTML == "5"){
+                } else if(game == "1" && document.getElementById("lastinput").innerHTML == "R1" 
+                && document.getElementById("isstopped").innerHTML == "5"){
                     document.getElementById("Lijnrace").style.opacity = 0.2;          
                     ValidClick = true;
-                } else if(game == "R2" && document.getElementById("lastinput").innerHTML == "5"){
+                } else if(game == "R2" && document.getElementById("lastinput").innerHTML == "1"
+                && document.getElementById("isstopped").innerHTML == "5"){
                     document.getElementById("rijZoeken").style.opacity = 0.2;  
                     ValidClick = true;
-                } else if(game == "2" && document.getElementById("lastinput").innerHTML == "5"){
+                } else if(game == "2" && document.getElementById("lastinput").innerHTML == "R2"
+                && document.getElementById("isstopped").innerHTML == "5"){
                     document.getElementById("Zoeken").style.opacity = 0.2;    
                     ValidClick = true;
-                } else if(game == "R3" && document.getElementById("lastinput").innerHTML == "5"){
+                } else if(game == "R3" && document.getElementById("lastinput").innerHTML == "2"
+                && document.getElementById("isstopped").innerHTML == "5"){
                     document.getElementById("rijRace").style.opacity = 0.2;    
                     ValidClick = true;
-                } else if(game == "3" && document.getElementById("lastinput").innerHTML == "5"){
+                } else if(game == "3" && document.getElementById("lastinput").innerHTML == "R3"
+                && document.getElementById("isstopped").innerHTML == "5"){
                     document.getElementById("Paardenrace").style.opacity = 0.2;  
                     ValidClick = true;
-                } else if(game == "R4" && document.getElementById("lastinput").innerHTML == "5"){
+                } else if(game == "R4" && document.getElementById("lastinput").innerHTML == "3"
+                && document.getElementById("isstopped").innerHTML == "5"){
                     document.getElementById("rijDoos").style.opacity = 0.2;      
                     ValidClick = true;
-                } else if(game == "4" && document.getElementById("lastinput").innerHTML == "5"){
+                } else if(game == "4" && document.getElementById("lastinput").innerHTML == "R4"
+                && document.getElementById("isstopped").innerHTML == "5"){
                     document.getElementById("Doos").style.opacity = 0.2;       
                     ValidClick = true;
                 } else if(game == "5"){
                     ValidClick = true;
                 } else{
-                    ValidClick = false;         
-                    alert("Robot is niet gestopt, klik op de stop knop!");
+                    ValidClick = false;     
+                    alert("Je hebt nog niet op de stopknop geklikt! \nOf jouw robot is nog niet bij dit spel!");
+                }
+                
+                if(game == "5"){
+                    document.getElementById("isstopped").innerHTML = "5";
+                } else{
+                    document.getElementById("isstopped").innerHTML = "";                   
                 }
                 
                 if(ValidClick){
-                    document.getElementById("lastinput").innerHTML = game;
+                    if(game != 5){
+                        document.getElementById("lastinput").innerHTML = game;
+                    }
+                    
                     if(game == 4){
                         document.getElementById("DisplayedController").style.opacity = 1;
                     }
