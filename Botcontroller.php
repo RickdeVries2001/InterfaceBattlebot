@@ -44,6 +44,16 @@
             margin-bottom: 20px;
             font-weight: bold;
             font-size: 22px;
+            display: inline;
+            margin-left: 20px;
+            opacity: 0.2;
+        }
+        
+        #lastinput{
+            font-weight: bold;
+            font-size: 22px;  
+            display: inline;
+            opacity: 0.2;
         }
         
         #controllerbox input{
@@ -69,20 +79,35 @@
         #BeginGames{
             margin: 40px;
             margin-right: 0;
+/*            width: 40vw;*/
         }
         
-        #BeginGames button{
-            height: 100px;
-            width: 100px;
+        .BeginGamesbutton{
+            height: 90px;
+            width: 90px;
             transform: skewX(-10deg);
             border-radius: 5px;
             border: 0;
             background-color: cadetblue;
             color: white;
             font-weight: bold;
-            font-size: 18px;
-            margin-left: 10px;
+            font-size: 15px;
+            margin-left: 5px;
             cursor: pointer;
+        }
+        
+        .RijNaar{
+            height: 40px;
+            width: 60px;
+            transform: skewX(-10deg);
+            border-radius: 5px;
+            border: 0;
+            background-color: cadetblue;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            margin-left: 5px;
+            cursor: pointer;          
         }
         
         #FullStopButton{
@@ -102,16 +127,13 @@
             cursor: pointer;
         }
 
-        #FullStopButton p{
-            font-size: 10px;
-        }
-        
         #DisplayedController{
             margin: 20px;
             margin-top: 0;
             margin-bottom: 0;
             padding-left: 25px; 
             float: left;
+            opacity: 0.2;
         }
 
         #DisplayedController td{
@@ -148,6 +170,7 @@
         
         #controlvoorkeuren{
             float: right;
+            margin-top: 50px;
         }
 
         #controlvoorkeuren div{
@@ -168,6 +191,7 @@
             background-color: tomato;
             opacity: 0.2;
         }
+        
         
     </style>
 </head>
@@ -222,9 +246,10 @@
                 }
             ?>
         </div>
+        <div id="lastinput">i</div>
         <div id="lastmove"> laatste move </div>
         <p> Klik op de knop om aan het bijhorende spel te beginnen!</p>
-        <p> Klik op de stopknop als de robot het spel faalt. </p>
+        <p> Klik op de stopknop als het spel afgelopen is of als de robot het spel faalt</p>
         
         <div id="controlvoorkeuren">
             <h3> Robot moet stoppen bij: </h3>
@@ -238,24 +263,65 @@
 		?>
 
         <div id="BeginGames">
-            <button id="Lijnrace" onclick="StartGame('1')"> Lijnrace </button>
-            <button id='Doos' onclick="StartGame('4')"> Parcours </button>
-            <button id='Paardenrace' onclick="StartGame('3')"> Horserace </button>
-            <button id='Zoeken' onclick="StartGame('2')"> Zoektocht </button>
+            <button class="RijNaar" id="rijLijnRace" onclick="StartGame('R1')"> 1 Next </button>
+            <button class="BeginGamesbutton" id="Lijnrace" onclick="StartGame('1')"> Lijnrace </button>
+            <button class="RijNaar" id="rijZoeken" onclick="StartGame('R2')"> 2 Next </button>
+            <button class="BeginGamesbutton" id='Zoeken' onclick="StartGame('2')"> Zoektocht </button>
+            <button class="RijNaar" id="rijRace" onclick="StartGame('R3')"> 3 Next </button>
+            <button class="BeginGamesbutton" id='Paardenrace' onclick="StartGame('3')"> Horserace </button>
+            <button class="RijNaar" id="rijDoos" onclick="StartGame('R4')"> 4 Next </button>
+            <button class="BeginGamesbutton" id='Doos' onclick="StartGame('4')"> Parcours </button>
         </div>
         
         <script>
             function StartGame(game){
-                console.log(game);
-                $.ajax( {
-                    url: "front-end/sendCommand.php",
-                    method: "POST",
-                    data: {command:game},
-                    dataType: "text",
-                    success: function(strMessage) {
-                        $("#stopped").text(strMessage);
+                if(game == "R1" && document.getElementById("lastinput").innerHTML == "i"){
+                    document.getElementById("rijLijnRace").style.opacity = 0.2;
+                    ValidClick = true;
+                } else if(game == "1" && document.getElementById("lastinput").innerHTML == "R1"){
+                    document.getElementById("Lijnrace").style.opacity = 0.2;          
+                    ValidClick = true;
+                } else if(game == "R2" && document.getElementById("lastinput").innerHTML == "1"){
+                    document.getElementById("rijZoeken").style.opacity = 0.2;  
+                    ValidClick = true;
+                } else if(game == "2" && document.getElementById("lastinput").innerHTML == "R2"){
+                    document.getElementById("Zoeken").style.opacity = 0.2;    
+                    ValidClick = true;
+                } else if(game == "R3" && document.getElementById("lastinput").innerHTML == "2"){
+                    document.getElementById("rijRace").style.opacity = 0.2;    
+                    ValidClick = true;
+                } else if(game == "3" && document.getElementById("lastinput").innerHTML == "R3"){
+                    document.getElementById("Paardenrace").style.opacity = 0.2;  
+                    ValidClick = true;
+                } else if(game == "R4" && document.getElementById("lastinput").innerHTML == "3"){
+                    document.getElementById("rijDoos").style.opacity = 0.2;      
+                    ValidClick = true;
+                } else if(game == "4" && document.getElementById("lastinput").innerHTML == "R4"){
+                    document.getElementById("Doos").style.opacity = 0.2;       
+                    ValidClick = true;
+                } else{
+                    ValidClick = false;
+                }
+                
+                if(ValidClick){
+                    document.getElementById("lastinput").innerHTML = game;
+                    if(game == 4){
+                        document.getElementById("DisplayedController").style.opacity = 1;
                     }
-                });  
+                    else{
+                        document.getElementById("DisplayedController").style.opacity = 0.2;
+                    }
+                    console.log(game);
+                    $.ajax( {
+                        url: "front-end/sendCommand.php",
+                        method: "POST",
+                        data: {command:game},
+                        dataType: "text",
+                        success: function(strMessage) {
+                            $("#stopped").text(strMessage);
+                        }
+                    });  
+                }
             }
 
             function GiveControllerInstruction(){
@@ -278,7 +344,7 @@
         </div>
 
         <div id="FullStopButton" onclick="StartGame('5')" onmousedown="FullStop()" onmouseup="stopstop()">
-            STOP SPEL
+            STOP KNOP
         </div>
        
         <?php
@@ -297,34 +363,35 @@
             
             function GetKeyInput(){
                 q = event.which || event.keyCode;
-                if(q == 87 || q == 83 || q == 65 || q == 68){
-                    audio.play();
-                }
+                if(document.getElementById('lastinput').innerHTML == 4){
+                    if(q == 87 || q == 83 || q == 65 || q == 68){
+                        audio.play();
+                    }
 
-                if(q == 87){
-                    Wtoets.style.backgroundColor = 'grey';
-                }
+                    if(q == 87){
+                        Wtoets.style.backgroundColor = 'grey';
+                    }
 
-                if(q == 83){
-                    Stoets.style.backgroundColor = 'grey';
-                }
+                    if(q == 83){
+                        Stoets.style.backgroundColor = 'grey';
+                    }
 
-                if(q == 65){
-                    Atoets.style.backgroundColor = 'grey';
-                }
+                    if(q == 65){
+                        Atoets.style.backgroundColor = 'grey';
+                    }
 
-                if(q == 68){
-                    Dtoets.style.backgroundColor = 'grey';
-                }
+                    if(q == 68){
+                        Dtoets.style.backgroundColor = 'grey';
+                    }
 
-                if(q == 81){
-                    Qtoets.style.backgroundColor = 'grey';
-                    if(!ReleaseToStop){
-                        audio.pause();
-                        audio.currentTime = 0;
+                    if(q == 81){
+                        Qtoets.style.backgroundColor = 'grey';
+                        if(!ReleaseToStop){
+                            audio.pause();
+                            audio.currentTime = 0;
+                        }
                     }
                 }
-                
             }
 
             function Stop(){

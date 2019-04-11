@@ -66,8 +66,7 @@ function getKeyPress()
     
     //als je deze command wilt spammen terwijl de toets ingedrukt is 
     //moet je deze if statement wegcommenten en de comments onderaan uncommenten
-    
-    if(cmd != document.getElementById('lastmove').innerHTML){
+    if(cmd != document.getElementById('lastmove').innerHTML && document.getElementById('lastinput').innerHTML == 4){
         $.ajax( {
             url: "front-end/sendCommand.php",
             method: "POST",
@@ -79,7 +78,8 @@ function getKeyPress()
                 $("#stopped").text(strMessage);
             }
         });
-        document.getElementById('lastmove').innerHTML = cmd;     
+        document.getElementById('lastmove').innerHTML = cmd;  
+        //document.getElementById('lastinput').innerHTML = cmd;  
         console.log(cmd); 
     }
 }
