@@ -94,11 +94,12 @@
             font-size: 15px;
             margin-left: 5px;
             cursor: pointer;
+            float: left;
         }
         
         .RijNaar{
             height: 40px;
-            width: 60px;
+            width: 50px;
             transform: skewX(-10deg);
             border-radius: 5px;
             border: 0;
@@ -107,7 +108,9 @@
             font-weight: bold;
             font-size: 12px;
             margin-left: 5px;
-            cursor: pointer;          
+            cursor: pointer;      
+            float: left;
+                margin-top: 25px;
         }
         
         #FullStopButton{
@@ -117,7 +120,7 @@
             background-color: tomato;
             color: white;
             margin: 20px;
-            margin-left: 40px;
+            margin-left: 80px;
             border-radius: 100%;
             text-align: center;
             font-size: 30px;
@@ -125,11 +128,12 @@
             font-style: italic;
             float: left;
             cursor: pointer;
+            margin-top: 40px;
         }
 
         #DisplayedController{
             margin: 20px;
-            margin-top: 0;
+            margin-top: 20px;
             margin-bottom: 0;
             padding-left: 25px; 
             float: left;
@@ -169,8 +173,9 @@
         }
         
         #controlvoorkeuren{
-            float: right;
-            margin-top: 50px;
+            float: left;
+            padding-top: 50px;
+            padding-left: 150px;
         }
 
         #controlvoorkeuren div{
@@ -192,7 +197,36 @@
             opacity: 0.2;
         }
         
+        .Begin{
+            transform: rotate(270deg);
+            float: left;
+            margin-top: 35px;
+            opacity: 0.5;
+            font-size: 20px;
+            font-style: italic;
+        }
         
+        .End{
+            transform: rotate(270deg);
+            float: left;
+            margin-top: 35px;
+            opacity: 0.5;
+            font-size: 20px;
+            font-style: italic;
+        }
+        
+        #GameBox{
+            height: 40vh;
+            width: 60vw;
+            float: left;
+        }
+        
+        .controllerbuttons{
+            width: 100%;
+            height: 300px;
+            float: left;
+            padding-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -224,83 +258,67 @@
                 <input type="radio" value="Q" name="q" id="q" checked="checked"/>
             </form>
         </div>
-        <p> Maak gebruik van de A-S-W-D toetsen om te bewegen en de Q toets om stil te staan. </p>
-        <div id="demo"> <!-- niet weghalen! deze zijn voor testen --></div>
-        <div id="demo2"> <!-- niet weghalen! deze zijn voor testen --></div>
-        <div id="richtingbox">
-            <?php
-                if(isset($_POST['w'])){
-                    echo 'forward';
-                }
-                if(isset($_POST['a'])){
-                    echo 'left';
-                }
-                if(isset($_POST['d'])){
-                    echo 'right';
-                }
-                if(isset($_POST['s'])){
-                    echo 'back';
-                }
-                if(isset($_POST['q'])){
-                    echo 'Stop';
-                }
-            ?>
-        </div>
-        <div id="lastinput">i</div>
-        <div id="lastmove"> laatste move </div>
-        <p> Klik op de knop om aan het bijhorende spel te beginnen!</p>
-        <p> Klik op de stopknop als het spel afgelopen is of als de robot het spel faalt</p>
         
-        <div id="controlvoorkeuren">
-            <h3> Robot moet stoppen bij: </h3>
-            <div id="ASWDstop" onclick="useWASDstop()"> loslaten ASWD toets </div>
-            <div id="useQstop" onclick="useQstop()"> indrukken Q toets </div>
-        </div>
-        
-        <script src="front-end/index.js"></script>
-		<?php
-		include 'front-end/sendCommand.php';
-		?>
+        <div id="GameBox">
+<!--            <p> Maak gebruik van de A-S-W-D toetsen om te bewegen en de Q toets om stil te staan. </p>
+            <div id="demo">  niet weghalen! deze zijn voor testen </div>
+            <div id="demo2">  niet weghalen! deze zijn voor testen </div>
+            <div id="richtingbox"></div>-->
+            <div id="lastinput"></div> <!-- niet weghalen! -->
+            <div id="lastmove"></div> <!-- niet weghalen! -->
+<!--            <p> Klik op de knop om aan het bijhorende spel te beginnen!</p>
+            <p> Klik op de stopknop als het spel afgelopen is of als de robot het spel faalt</p>-->
 
-        <div id="BeginGames">
-            <button class="RijNaar" id="rijLijnRace" onclick="StartGame('R1')"> 1 Next </button>
-            <button class="BeginGamesbutton" id="Lijnrace" onclick="StartGame('1')"> Lijnrace </button>
-            <button class="RijNaar" id="rijZoeken" onclick="StartGame('R2')"> 2 Next </button>
-            <button class="BeginGamesbutton" id='Zoeken' onclick="StartGame('2')"> Zoektocht </button>
-            <button class="RijNaar" id="rijRace" onclick="StartGame('R3')"> 3 Next </button>
-            <button class="BeginGamesbutton" id='Paardenrace' onclick="StartGame('3')"> Horserace </button>
-            <button class="RijNaar" id="rijDoos" onclick="StartGame('R4')"> 4 Next </button>
-            <button class="BeginGamesbutton" id='Doos' onclick="StartGame('4')"> Parcours </button>
+
+            <div id="BeginGames">
+                <div class="Begin"> Start </div>
+                <button class="RijNaar" id="rijLijnRace" onclick="StartGame('R1')"> 1 Next </button>
+                <button class="BeginGamesbutton" id="Lijnrace" onclick="StartGame('1')"> Lijnrace </button>
+                <button class="RijNaar" id="rijZoeken" onclick="StartGame('R2')"> 2 Next </button>
+                <button class="BeginGamesbutton" id='Zoeken' onclick="StartGame('2')"> Zoektocht </button>
+                <button class="RijNaar" id="rijRace" onclick="StartGame('R3')"> 3 Next </button>
+                <button class="BeginGamesbutton" id='Paardenrace' onclick="StartGame('3')"> Horserace </button>
+                <button class="RijNaar" id="rijDoos" onclick="StartGame('R4')"> 4 Next </button>
+                <button class="BeginGamesbutton" id='Doos' onclick="StartGame('4')"> Parcours </button>
+                <div class="End"> Finish </div>
+            </div>
         </div>
         
+                
         <script>
             function StartGame(game){
-                if(game == "R1" && document.getElementById("lastinput").innerHTML == "i"){
+                if(game == "R1" && document.getElementById("lastinput").innerHTML == ""){
                     document.getElementById("rijLijnRace").style.opacity = 0.2;
                     ValidClick = true;
-                } else if(game == "1" && document.getElementById("lastinput").innerHTML == "R1"){
+                } else if(game == "R1" && document.getElementById("lastinput").innerHTML == "5"){
+                    document.getElementById("rijLijnRace").style.opacity = 0.2;
+                    ValidClick = true;
+                } else if(game == "1" && document.getElementById("lastinput").innerHTML == "5"){
                     document.getElementById("Lijnrace").style.opacity = 0.2;          
                     ValidClick = true;
-                } else if(game == "R2" && document.getElementById("lastinput").innerHTML == "1"){
+                } else if(game == "R2" && document.getElementById("lastinput").innerHTML == "5"){
                     document.getElementById("rijZoeken").style.opacity = 0.2;  
                     ValidClick = true;
-                } else if(game == "2" && document.getElementById("lastinput").innerHTML == "R2"){
+                } else if(game == "2" && document.getElementById("lastinput").innerHTML == "5"){
                     document.getElementById("Zoeken").style.opacity = 0.2;    
                     ValidClick = true;
-                } else if(game == "R3" && document.getElementById("lastinput").innerHTML == "2"){
+                } else if(game == "R3" && document.getElementById("lastinput").innerHTML == "5"){
                     document.getElementById("rijRace").style.opacity = 0.2;    
                     ValidClick = true;
-                } else if(game == "3" && document.getElementById("lastinput").innerHTML == "R3"){
+                } else if(game == "3" && document.getElementById("lastinput").innerHTML == "5"){
                     document.getElementById("Paardenrace").style.opacity = 0.2;  
                     ValidClick = true;
-                } else if(game == "R4" && document.getElementById("lastinput").innerHTML == "3"){
+                } else if(game == "R4" && document.getElementById("lastinput").innerHTML == "5"){
                     document.getElementById("rijDoos").style.opacity = 0.2;      
                     ValidClick = true;
-                } else if(game == "4" && document.getElementById("lastinput").innerHTML == "R4"){
+                } else if(game == "4" && document.getElementById("lastinput").innerHTML == "5"){
                     document.getElementById("Doos").style.opacity = 0.2;       
                     ValidClick = true;
+                } else if(game == "5"){
+                    ValidClick = true;
                 } else{
-                    ValidClick = false;
+                    ValidClick = false;         
+                    alert("Robot is niet gestopt, klik op de stop knop!");
                 }
                 
                 if(ValidClick){
@@ -328,25 +346,41 @@
                 alert("Gebruik de toetsen op je toetsenbord om de robot te besturen!");
             }
         </script>
-        <div id="DisplayedController" onclick="GiveControllerInstruction()">
-            <table>
-                <tr>
-                    <td id="toetsQ" class="toets">Q <p>(stop)</p></td>
-                    <td id="toetsW" class="toets">W <p> (voren)</p></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td id="toetsA" class="toets">A <p> (links)</p></td>
-                    <td id="toetsS" class="toets">S <p> (achter)</p></td>
-                    <td id="toetsD" class="toets">D <p> (rechts)</p></td>
-                </tr>
-            </table>
-        </div>
+        
+        <div class="controllerbuttons">                   
+            
+            <div id="DisplayedController" onclick="GiveControllerInstruction()">
+                <table>
+                    <tr>
+                        <td id="toetsQ" class="toets">Q <p>(stop)</p></td>
+                        <td id="toetsW" class="toets">W <p> (voren)</p></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td id="toetsA" class="toets">A <p> (links)</p></td>
+                        <td id="toetsS" class="toets">S <p> (achter)</p></td>
+                        <td id="toetsD" class="toets">D <p> (rechts)</p></td>
+                    </tr>
+                </table>
+            </div>
 
-        <div id="FullStopButton" onclick="StartGame('5')" onmousedown="FullStop()" onmouseup="stopstop()">
-            STOP KNOP
+            <div id="FullStopButton" onclick="StartGame('5')" onmousedown="FullStop()" onmouseup="stopstop()">
+                STOP KNOP
+            </div>
+            
+            <div id="controlvoorkeuren">
+                <h3> Robot moet stoppen bij: </h3>
+                <div id="ASWDstop" onclick="useWASDstop()"> loslaten ASWD toets </div>
+                <div id="useQstop" onclick="useQstop()"> indrukken Q toets </div>
+            </div>
+
+            <script src="front-end/index.js"></script>
+            
+            <?php
+                include 'front-end/sendCommand.php';
+            ?>
+            
         </div>
-       
         <?php
             $sound = 'INF1j.mp3'
         ?>
