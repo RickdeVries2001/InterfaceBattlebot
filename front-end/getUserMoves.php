@@ -55,8 +55,9 @@ if(isset($_GET['q'])){
         JOIN users on t1.user_id = users.ID;";
     $result = mysqli_query($conn,$sql);
     while($row = mysqli_fetch_array($result)) {
+        
         echo "<div class='teamname'>". $row['username']. ":</div><div class='teamcmd' id='". $row['username']. "'>";
-        echo $row['cmd'] . "</div>";
+        echo $row['cmd'] . "</div><br>";
     }
     mysqli_close($conn);
 }

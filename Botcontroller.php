@@ -2,9 +2,14 @@
     if(empty($_COOKIE['id'])){
         if(isset($_GET['id'])){
             setcookie("id", $_GET['id'], time() + (86400 * 30));
-            header('location: Botcontroller.php?id='.$_GET['id']);
+            header('location: Botcontroller.php?id='.$_COOKIE['id']);
         }
         else{
+            header('location: index.php');
+        }
+    }
+    else{
+        if(empty($_GET['id'])){
             header('location: index.php');
         }
     }
@@ -25,7 +30,7 @@
     </script>
     <style>
         *{
-            font-family: roboto;
+            font-family: roboto, arial;
             padding: 0;
             margin: 0;
             color: white;
@@ -223,16 +228,72 @@
         }
         
         #GameBox{
-            height: 40vh;
-            width: 60vw;
+            min-height: 40vh;
+            width: 100%;
             float: left;
         }
         
         .controllerbuttons{
             width: 100%;
-            height: 300px;
+            height: 250px;
             float: left;
             padding-top: 20px;
+        }
+        
+        #serverpage{
+            color: grey;
+            margin-left: 100px;
+        }
+        
+        .BeginGamesPart{
+            float: left;
+            margin-top: 5px;
+        }
+        
+        #responsivemessage{
+            display: none;
+        }
+        
+        @media only screen and (max-width: 900px){
+            .mainContent{
+                width: 100vw;
+                height: calc(100vh - 30px);
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            a{
+                margin-left: 0;
+                width: 100%;
+                float: left
+            }
+            #serverpage{
+                margin-left: 0;
+                width: 100%;
+            }
+            #logoutbutton{
+                float: left;
+                width: 100%;
+            }
+        }
+        
+        @media only screen and (max-width: 450px){
+            #GameBox{
+                display: none;
+            }
+            
+            #controlvoorkeuren{
+                display: none;
+            }
+            
+            #DisplayedController{
+                display: none;
+            }
+            #FullStopButton{
+                display: none;
+            }
+            #responsivemessage{
+                display: block;
+            }
         }
     </style>
 </head>
@@ -242,8 +303,16 @@
             <?php if(isset($_GET['id'])){
                     echo '?id='.$_GET['id'];
             }?>
-        "> Scoreboard </a> <a id="logoutbutton" href="logout.php">Uitloggen</a></h3>
-        
+        "> Scoreboard </a> 
+        <a id="serverpage" href="serverpage.php
+            <?php if(isset($_GET['id'])){
+                    echo '?id='.$_GET['id'];
+            }?>
+        ">Serverpagina</a>
+        <a id="logoutbutton" href="functions/logout_script.php">Uitloggen</a></h3>
+        <div id="responsivemessage">
+            please use a computer to control your robot :)
+        </div>
         <div id="controllerbox">
             <input type="text" id="besturingsvak" onkeydown="GetKeyInput()" onkeyup="Stop()"> <!--   -->
 
@@ -279,16 +348,20 @@
 
 
             <div id="BeginGames">
-                <div class="Begin"> Start </div>
-                <button class="RijNaar" id="rijLijnRace" onclick="StartGame('R1')"> 1 Next </button>
-                <button class="BeginGamesbutton" id="Lijnrace" onclick="StartGame('1')"> Lijnrace </button>
-                <button class="RijNaar" id="rijZoeken" onclick="StartGame('R2')"> 2 Next </button>
-                <button class="BeginGamesbutton" id='Zoeken' onclick="StartGame('2')"> Zoektocht </button>
-                <button class="RijNaar" id="rijRace" onclick="StartGame('R3')"> 3 Next </button>
-                <button class="BeginGamesbutton" id='Paardenrace' onclick="StartGame('3')"> Horserace </button>
-                <button class="RijNaar" id="rijDoos" onclick="StartGame('R4')"> 4 Next </button>
-                <button class="BeginGamesbutton" id='Doos' onclick="StartGame('4')"> Parcours </button>
-                <div class="End"> Finish </div>
+                <div class="BeginGamesPart">
+                    <div class="Begin"> Start </div>
+                    <button class="RijNaar" id="rijLijnRace" onclick="StartGame('R1')"> 1 Next </button>
+                    <button class="BeginGamesbutton" id="Lijnrace" onclick="StartGame('1')"> Lijnrace </button>
+                    <button class="RijNaar" id="rijZoeken" onclick="StartGame('R2')"> 2 Next </button>
+                    <button class="BeginGamesbutton" id='Zoeken' onclick="StartGame('2')"> Zoektocht </button>
+                </div>
+                <div class="BeginGamesPart">
+                    <button class="RijNaar" id="rijRace" onclick="StartGame('R3')"> 3 Next </button>
+                    <button class="BeginGamesbutton" id='Paardenrace' onclick="StartGame('3')"> Horserace </button>
+                    <button class="RijNaar" id="rijDoos" onclick="StartGame('R4')"> 4 Next </button>
+                    <button class="BeginGamesbutton" id='Doos' onclick="StartGame('4')"> Parcours </button>
+                    <div class="End"> Finish </div>
+                </div>   
             </div>
         </div>
         
@@ -403,7 +476,18 @@
             
         </div>
         <?php
-            $sound = 'INF1j.mp3'
+            if(isset($_GET['id'])){
+                require 'front-end/dbConn.php';
+                $sql="SELECT username FROM users WHERE ID = ?";
+                $stmt = mysqli_prepare($conn, $sql);
+                mysqli_stmt_bind_param($stmt, 's', $_GET['id']);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_bind_result($stmt, $name);
+                while (mysqli_stmt_fetch($stmt)) {
+                    $sound = $name.'.mp3';  
+                }
+                mysqli_close($conn);
+            }
         ?>
 
         <script>
