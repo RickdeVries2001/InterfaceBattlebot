@@ -44,6 +44,10 @@
             color: cadetblue;
         }
         
+        h1{
+            padding-left: 170px;
+        }
+        
         #lastmove{
             margin-top: 10px;
             margin-bottom: 20px;
@@ -295,6 +299,15 @@
                 display: block;
             }
         }
+        
+        #myIframe{
+            height: 500px;
+            width: 60vw;
+            left: 20vw;
+            float: left;
+            position: absolute;
+            
+        }
     </style>
 </head>
 <body>
@@ -350,15 +363,15 @@
             <div id="BeginGames">
                 <div class="BeginGamesPart">
                     <div class="Begin"> Start </div>
-                    <button class="RijNaar" id="rijLijnRace" onclick="StartGame('R1')"> 1 Next </button>
+                    <button class="RijNaar" id="rijLijnRace" onclick="StartGame('y')"> 1 Next </button>
                     <button class="BeginGamesbutton" id="Lijnrace" onclick="StartGame('1')"> Lijnrace </button>
-                    <button class="RijNaar" id="rijZoeken" onclick="StartGame('R2')"> 2 Next </button>
+                    <button class="RijNaar" id="rijZoeken" onclick="StartGame('u')"> 2 Next </button>
                     <button class="BeginGamesbutton" id='Zoeken' onclick="StartGame('2')"> Zoektocht </button>
                 </div>
                 <div class="BeginGamesPart">
-                    <button class="RijNaar" id="rijRace" onclick="StartGame('R3')"> 3 Next </button>
+                    <button class="RijNaar" id="rijRace" onclick="StartGame('i')"> 3 Next </button>
                     <button class="BeginGamesbutton" id='Paardenrace' onclick="StartGame('3')"> Horserace </button>
-                    <button class="RijNaar" id="rijDoos" onclick="StartGame('R4')"> 4 Next </button>
+                    <button class="RijNaar" id="rijDoos" onclick="StartGame('o')"> 4 Next </button>
                     <button class="BeginGamesbutton" id='Doos' onclick="StartGame('4')"> Parcours </button>
                     <div class="End"> Finish </div>
                 </div>   
@@ -562,5 +575,11 @@
             }, 50);
         </script>
     </div>
+    <h1> Dome camera:</h1>
+    <iframe align="center" src="stream.php" name="myIframe" id="myIframe"> 
+    </iframe>
+    <?php 
+        //require 'stream.php';
+    ?>
 </body>
 </html>
