@@ -383,24 +383,34 @@
             function StartGame(game){
                 if(game == "y"){
                     document.getElementById("rijLijnRace").style.opacity = 0.2;
+                    audio.play();
                 } else if(game == "1"){
-                    document.getElementById("Lijnrace").style.opacity = 0.2;          
+                    document.getElementById("Lijnrace").style.opacity = 0.2;   
+                    audio.play();
                 } else if(game == "u"){
-                    document.getElementById("rijZoeken").style.opacity = 0.2;  
+                    document.getElementById("rijZoeken").style.opacity = 0.2; 
+                    audio.play();
                 } else if(game == "2"){
                     document.getElementById("Zoeken").style.opacity = 0.2;    
+                    audio.play();
                 } else if(game == "i" ){
-                    document.getElementById("rijRace").style.opacity = 0.2;    
+                    document.getElementById("rijRace").style.opacity = 0.2;   
+                    audio.play();
                 } else if(game == "3"){
-                    document.getElementById("Paardenrace").style.opacity = 0.2;  
+                    document.getElementById("Paardenrace").style.opacity = 0.2; 
+                    audio.play();
                 } else if(game == "o" ){
-                    document.getElementById("rijDoos").style.opacity = 0.2;      
+                    document.getElementById("rijDoos").style.opacity = 0.2;   
+                    audio.play();
                 } else if(game == "4"){
                     document.getElementById("Doos").style.opacity = 0.2;       
+                    audio.play();
                 } 
                 
                 if(game == "5"){
                     document.getElementById("isstopped").innerHTML = "5";
+                    audio.pause();
+                    audio.currentTime = 0;
                 } else{
                     document.getElementById("isstopped").innerHTML = "";                   
                 }
@@ -493,6 +503,18 @@
             Dtoets = document.getElementById("toetsD");
             Qtoets = document.getElementById("toetsQ");
             
+//            if(document.getElementById("lastinput").innerHTML === "1" ||
+//            document.getElementById("lastinput").innerHTML === "2" ||
+//            document.getElementById("lastinput").innerHTML === "3" ||
+//            document.getElementById("lastinput").innerHTML === "4"){
+//                audio.play();
+//                console.log("succes");
+//            }
+//
+//            if(document.getElementById("isstopped").innerHTML == "5"){
+//                audio.pause();
+//                audio.currentTime = 0;
+//            }
             
             function GetKeyInput(){
                 q = event.which || event.keyCode;
