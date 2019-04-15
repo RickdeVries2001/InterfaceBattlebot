@@ -117,12 +117,12 @@
                 <div id="audioPlayers"> 
                 </div>
 
-            <audio controls volume="0.1" id='playINF1A'> <source src='Sounds/Car.mp3' type='audio/mpeg'> </audio>     
-            <audio controls volume="0.1" id='playINF1B'> <source src='Sounds/Car.mp3' type='audio/mpeg'> </audio>        
-            <audio controls volume="0.1" id='playINF1C'> <source src='Sounds/Car.mp3' type='audio/mpeg'> </audio>        
-            <audio controls volume="0.1" id='playINF1D'> <source src='Sounds/Car.mp3' type='audio/mpeg'> </audio>     
+            <audio controls volume="0.1" id='playINF1A'> <source src='Sounds/INF1A.mp3' type='audio/mpeg'> </audio>     
+            <audio controls volume="0.1" id='playINF1B'> <source src='Sounds/INF1B.mp3' type='audio/mpeg'> </audio>        
+            <audio controls volume="0.1" id='playINF1C'> <source src='Sounds/INF1C.mp3' type='audio/mpeg'> </audio>        
+            <audio controls volume="0.1" id='playINF1D'> <source src='Sounds/INF1D.mp3' type='audio/mpeg'> </audio>     
             <audio controls volume="0.1" id='playINF1E'> <source src='Sounds/INF1E.mp3' type='audio/mpeg'> </audio>        
-            <audio controls volume="0.1" id='playINF1G'> <source src='Sounds/Car.mp3' type='audio/mpeg'> </audio>
+            <audio controls volume="0.1" id='playINF1G'> <source src='Sounds/INF1G.mp3' type='audio/mpeg'> </audio>
             <audio controls volume="0.1" id='playINF1H'> <source src='Sounds/INF1H.mp3' type='audio/mpeg'> </audio>        
             <audio controls volume="0.1" id='playINF1I'> <source src='Sounds/INF1I.mp3' type='audio/mpeg'> </audio>
             <audio controls volume="0.1" id='playINF1J'> <source src='Sounds/INF1J.mp3' type='audio/mpeg'> </audio>
@@ -163,7 +163,8 @@
                         if(document.getElementById("INF1" + Teams[x])){
                             //console.log(Teams[x]);
                             if(document.getElementById("INF1" + Teams[x]).innerHTML == "S"
-                            || document.getElementById("INF1" + Teams[x]).innerHTML == "5"){
+                            || document.getElementById("INF1" + Teams[x]).innerHTML == "5"
+                            || document.getElementById("INF1" + Teams[x]).innerHTML == "4"){
                                 document.getElementById("playINF1" + Teams[x]).pause();
                                 document.getElementById("playINF1" + Teams[x]).currentTime = 0.5;
                             }
