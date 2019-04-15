@@ -381,43 +381,23 @@
 <!--                //&& document.getElementById("isstopped").innerHTML == "5"-->
         <script>
             function StartGame(game){
-                if(game == "R1" && document.getElementById("lastinput").innerHTML == ""){
+                if(game == "y"){
                     document.getElementById("rijLijnRace").style.opacity = 0.2;
-                    ValidClick = true;
-                } else if(game == "1" && document.getElementById("lastinput").innerHTML == "R1" 
-                && document.getElementById("isstopped").innerHTML == "5"){
+                } else if(game == "1"){
                     document.getElementById("Lijnrace").style.opacity = 0.2;          
-                    ValidClick = true;
-                } else if(game == "R2" && document.getElementById("lastinput").innerHTML == "1"
-                && document.getElementById("isstopped").innerHTML == "5"){
+                } else if(game == "u"){
                     document.getElementById("rijZoeken").style.opacity = 0.2;  
-                    ValidClick = true;
-                } else if(game == "2" && document.getElementById("lastinput").innerHTML == "R2"
-                && document.getElementById("isstopped").innerHTML == "5"){
+                } else if(game == "2"){
                     document.getElementById("Zoeken").style.opacity = 0.2;    
-                    ValidClick = true;
-                } else if(game == "R3" && document.getElementById("lastinput").innerHTML == "2"
-                && document.getElementById("isstopped").innerHTML == "5"){
+                } else if(game == "i" ){
                     document.getElementById("rijRace").style.opacity = 0.2;    
-                    ValidClick = true;
-                } else if(game == "3" && document.getElementById("lastinput").innerHTML == "R3"
-                && document.getElementById("isstopped").innerHTML == "5"){
+                } else if(game == "3"){
                     document.getElementById("Paardenrace").style.opacity = 0.2;  
-                    ValidClick = true;
-                } else if(game == "R4" && document.getElementById("lastinput").innerHTML == "3"
-                && document.getElementById("isstopped").innerHTML == "5"){
+                } else if(game == "o" ){
                     document.getElementById("rijDoos").style.opacity = 0.2;      
-                    ValidClick = true;
-                } else if(game == "4" && document.getElementById("lastinput").innerHTML == "R4"
-                && document.getElementById("isstopped").innerHTML == "5"){
+                } else if(game == "4"){
                     document.getElementById("Doos").style.opacity = 0.2;       
-                    ValidClick = true;
-                } else if(game == "5"){
-                    ValidClick = true;
-                } else{
-                    ValidClick = false;     
-                    alert("Je hebt nog niet op de stopknop geklikt! \nOf jouw robot is nog niet bij dit spel!");
-                }
+                } 
                 
                 if(game == "5"){
                     document.getElementById("isstopped").innerHTML = "5";
@@ -425,28 +405,29 @@
                     document.getElementById("isstopped").innerHTML = "";                   
                 }
                 
-                if(ValidClick){
-                    if(game != 5){
-                        document.getElementById("lastinput").innerHTML = game;
-                    }
-                    
-                    if(game == 4){
-                        document.getElementById("DisplayedController").style.opacity = 1;
-                    }
-                    else{
-                        document.getElementById("DisplayedController").style.opacity = 0.2;
-                    }
-                    console.log(game);
-                    $.ajax( {
-                        url: "front-end/sendCommand.php",
-                        method: "POST",
-                        data: {command:game},
-                        dataType: "text",
-                        success: function(strMessage) {
-                            $("#stopped").text(strMessage);
-                        }
-                    });  
+                
+                
+                if(game != 5){
+                    document.getElementById("lastinput").innerHTML = game;
                 }
+
+                if(game == 4){
+                    document.getElementById("DisplayedController").style.opacity = 1;
+                }
+                else{
+                    document.getElementById("DisplayedController").style.opacity = 0.2;
+                }
+                console.log(game);
+                $.ajax( {
+                    url: "front-end/sendCommand.php",
+                    method: "POST",
+                    data: {command:game},
+                    dataType: "text",
+                    success: function(strMessage) {
+                        $("#stopped").text(strMessage);
+                    }
+                });  
+                
             }
 
             function GiveControllerInstruction(){
