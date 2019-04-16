@@ -22,8 +22,17 @@
     
     if ($cmd != "")
     {
-
-        $SQLstring2 = "INSERT INTO user_cmd (user_id, cmd) VALUES(?, ?)";
+//        CREATE TABLE user_cmd2(
+//            id INT(6) AUTO_INCREMENT PRIMARY KEY,
+//            user_id int,
+//            cmd_id VARCHAR(11),
+//            cmd VARCHAR(11)
+//        );
+        if($_COOKIE["id"] < 1006){
+            $SQLstring2 = "INSERT INTO user_cmd (user_id, cmd) VALUES(?, ?)";
+        } else{
+            $SQLstring2 = "INSERT INTO user_cmd2 (user_id, cmd) VALUES(?, ?)";
+        }
         if ($stmt = mysqli_prepare($conn, $SQLstring2))
         {
             mysqli_stmt_bind_param($stmt, 'is', $user_id, $cmd);
