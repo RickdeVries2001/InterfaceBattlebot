@@ -113,6 +113,8 @@
         <div id="servercontent">
             <div id="txtHint">
             </div>
+            <div id="txtHint2">
+            </div>
 <!--            <div id="feedback"> hey</div>-->
                 <div id="audioPlayers"> 
                 </div>
@@ -141,6 +143,19 @@
                     }
                     xmlhttp.open("GET","front-end/getUserMoves.php?q=q",true);
                     xmlhttp.send();
+                    
+                    if (window.XMLHttpRequest) {
+                        xmlhttp2=new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
+                    } else {
+                        xmlhttp2=new ActiveXObject("Microsoft.XMLHTTP"); // code for IE6, IE5
+                    }
+                    xmlhttp2.onreadystatechange=function() {
+                        if(xmlhttp2.readyState==4 && xmlhttp2.status==200) {
+                            document.getElementById("txtHint2").innerHTML= xmlhttp2.responseText;
+                        }
+                    }
+                    xmlhttp2.open("GET","front-end/getSecondUserMoves.php?q=q",true);
+                    xmlhttp2.send();
                     //console.log('succes!');
                 }
 
