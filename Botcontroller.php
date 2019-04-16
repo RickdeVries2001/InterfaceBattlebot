@@ -22,7 +22,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Adruino user <?php echo $_COOCKIE['id'];?></title>
+    <title>Adruino user <?php echo $_COOKIE['id'];?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
@@ -303,7 +303,7 @@
         #myIframe{
             height: 500px;
             width: 60vw;
-            left: 20vw;
+            padding-left: 20vw;
             float: left;
             position: absolute;
             
@@ -578,8 +578,7 @@
         </script>
     </div>
     <h1> Dome camera:</h1>
-    <iframe align="center" src="stream.php" name="myIframe" id="myIframe"> 
-    </iframe>
+    <img id="myIframe" style="-webkit-user-select: none;" src="http://foscam.serverict.nl/videostream.cgi">
     <?php 
         //require 'stream.php';
     ?>
