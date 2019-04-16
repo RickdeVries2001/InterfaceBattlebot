@@ -410,7 +410,6 @@
                 if(game == "5"){
                     document.getElementById("isstopped").innerHTML = "5";
                     audio.pause();
-                    audio.currentTime = 0;
                 } else{
                     document.getElementById("isstopped").innerHTML = "";                   
                 }
