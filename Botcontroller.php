@@ -404,7 +404,6 @@
                     audio.play();
                 } else if(game == "4"){
                     document.getElementById("Doos").style.opacity = 0.2;       
-                    audio.play();
                 } 
                 
                 if(game == "5"){
