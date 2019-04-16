@@ -303,7 +303,7 @@
         #myIframe{
             height: 500px;
             width: 60vw;
-            padding-left: 20vw;
+            left: 20vw;
             float: left;
             position: absolute;
             
@@ -578,7 +578,8 @@
         </script>
     </div>
     <h1> Dome camera:</h1>
-    <img id="myIframe" style="-webkit-user-select: none;" src="http://foscam.serverict.nl/videostream.cgi">
+    <iframe align="center" src="stream.php" name="myIframe" id="myIframe"> 
+    </iframe>
     <?php 
         //require 'stream.php';
     ?>
